@@ -11,22 +11,21 @@
 </head>
 <body>
 
-<div id="app" data-page='{
+<!-- <div id="app" data-page='{
 						"component":"home",
 						"url":"/",
 						"props":{"name":"heydar"}
 						}'
 >
+</div> -->
+
+<div>
+	${page}
 </div>
-<script>
-/* 	var data = {
-		component:"home",
-		props:[],
-		url:"/",
-		version:"1"
-	};
-	
-	document.getElementById('app').data=data; */
-</script>
+
+<div id="app" data-page='${page}'>
+
+</div>
+
 </body>
 </html>
