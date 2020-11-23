@@ -3,6 +3,11 @@ package com.app.monolightdemo.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +28,7 @@ public class WebController {
 		Map<String, Object> props = new HashMap<>();
 		props.put("component", "home");
 		props.put("url", "/");
+		props.put("version","");
 		Map<String, Object> component_props = new HashMap<>();
 		component_props.put("name", "Heydar Binaliyev");
 		props.put("props", component_props);
@@ -30,5 +36,30 @@ public class WebController {
 		model.addAttribute("page", new ObjectMapper().writeValueAsString(props));
 		page.addObject(model);
 		return page;
+	}
+	@GetMapping
+	@RequestMapping("/profil")
+	public Object profil(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws JsonProcessingException {
+		
+		Map<String, Object> props = new HashMap<>();
+		props.put("component", "Profil/Index");
+		props.put("url", "/profil");
+		props.put("version","");
+		Map<String, Object> component_props = new HashMap<>();
+		component_props.put("name", "Heydar Binaliyev's profil");
+		props.put("props", component_props);
+		String data = new ObjectMapper().writeValueAsString(props);
+		if(request.getHeader("X-Inertia") == null) {
+			ModelAndView page = new ModelAndView("index");
+			model.addAttribute("page", data);
+			page.addObject(model);
+			System.err.println(data);
+			return page;
+		}
+		
+		response.addHeader("X-Inertia", "true");
+		response.addHeader("Vary", "Accept");
+		return new ResponseEntity<String>(data, HttpStatus.OK);
+
 	}
 }

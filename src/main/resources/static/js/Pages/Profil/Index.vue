@@ -2,7 +2,7 @@
 	<div>
 		
 		<h5>{{name}}</h5>
-		<inertia-link href="/profil" method="get" as="button" type="button">Goto Profil</inertia-link>
+		<inertia-link href="/update" method="put" as="button" type="button">Update Profil</inertia-link>
 	</div>
 </template>
 
@@ -15,8 +15,8 @@ export default{
 	
 	data(){
 		return{
-			x:"test1100001"
-
+			
+			
 		}
 	}
 }

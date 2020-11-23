@@ -10,7 +10,9 @@
 
 </head>
 <body>
-
+<div>
+		${page}
+	</div>
 <!-- <div id="app" data-page='{
 						"component":"home",
 						"url":"/",
@@ -19,9 +21,7 @@
 >
 </div> -->
 
-<div>
-	${page}
-</div>
+
 
 <div id="app" data-page='${page}'>
 
