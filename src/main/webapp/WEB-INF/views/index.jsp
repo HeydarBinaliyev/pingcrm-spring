@@ -5,23 +5,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <link href="/public/css/app.css" rel = "stylesheet"/>
-<script src="/public/js/app.js" defer></script>
+<script src="/public/js/app.js" defer ></script>
 <title>Insert title here</title>
 
 </head>
 <body>
-<div>
-	
-	</div>
-<!-- <div id="app" data-page='{
-						"component":"home",
-						"url":"/",
-						"props":{"name":"heydar"}
-						}'
->
-</div> -->
-
-
 
 <div id="app" data-page='${page}'>
 

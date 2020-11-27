@@ -24,6 +24,7 @@
         "@inertiajs/inertia": "^0.6.2",
         "@inertiajs/inertia-vue": "^0.4.2",
         "@inertiajs/progress": "^0.2.2",
+        "@popperjs/core": "^2.5.4",
         "bootstrap": "^4.5.3",
         "bootstrap-vue": "^2.19.0",
         "vue": "^2.6.12"

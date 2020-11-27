@@ -1,5 +1,6 @@
 package com.app.monolightdemo.controller;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,14 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.JsonbHttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
@@ -40,9 +39,9 @@ public class WebController {
 		page.addObject(model);
 		return page;
 	}
-	@GetMapping
+	@GetMapping 
 	@RequestMapping("/profil")
-	public Object profil(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
+	public Object profil(HttpServletRequest request ,HttpServletResponse response ,ModelMap model) throws IOException {
 		
 		
 		Map<String, Object> props = new HashMap<>();
@@ -50,14 +49,15 @@ public class WebController {
 		props.put("url", "/profil");
 		props.put("version","");
 		Map<String, Object> component_props = new HashMap<>();
-		component_props.put("name", "Heydar Bi'naliyev");
+		component_props.put("name", "Heydar Binaliyev");
 		props.put("props", component_props);
 		String data = new ObjectMapper().writeValueAsString(props);
 		if(request.getHeader("X-Inertia") == null) {
 			ModelAndView page = new ModelAndView("index");
-			//model.addAttribute("page", data);
-			page.addObject("page", data);
-			System.err.println(data);
+			response.setContentType("application/json");
+			model.addAttribute("page", data);
+			page.addObject(model);
+			
 			return page;
 		}
 		

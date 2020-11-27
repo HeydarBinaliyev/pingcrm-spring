@@ -1,21 +1,31 @@
 <template>
-	<div>
-		
-		<h5>{{name}}</h5>
-		<inertia-link href="/profil" method="get" as="button" type="button">Goto Profil</inertia-link>
-	</div>
+  <app-layout>
+
+    <template #header>
+      <p>Main Page</p>
+    </template>
+
+    <div>
+      <inertia-link href="/profil" method="get" as="button" type="button">Goto {{name}} Profil</inertia-link>
+    </div>
+
+  </app-layout>
 </template>
 
 <script>
 	
-
+import AppLayout from "./Shared/AppLayout";
 export default{
 
+
 	props:['name'],
-	
+
+  components:{
+	  AppLayout
+  },
 	data(){
 		return{
-			x:"test1100001"
+			x:"test110000 1"
 
 		}
 	}
