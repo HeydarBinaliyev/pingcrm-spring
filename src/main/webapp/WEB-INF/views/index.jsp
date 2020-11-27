@@ -11,7 +11,7 @@
 </head>
 <body>
 <div>
-		${page}
+	
 	</div>
 <!-- <div id="app" data-page='{
 						"component":"home",

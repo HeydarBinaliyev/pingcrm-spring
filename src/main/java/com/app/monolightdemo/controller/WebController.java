@@ -44,12 +44,13 @@ public class WebController {
 	@RequestMapping("/profil")
 	public Object profil(HttpServletRequest request, HttpServletResponse response) throws JsonProcessingException {
 		
+		
 		Map<String, Object> props = new HashMap<>();
 		props.put("component", "Profil/Index");
 		props.put("url", "/profil");
 		props.put("version","");
 		Map<String, Object> component_props = new HashMap<>();
-		component_props.put("name", "Heydar Binaliyevs profil");
+		component_props.put("name", "Heydar Bi'naliyev");
 		props.put("props", component_props);
 		String data = new ObjectMapper().writeValueAsString(props);
 		if(request.getHeader("X-Inertia") == null) {
