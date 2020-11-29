@@ -2,7 +2,7 @@
   <AppLayout>
 
     <template #header>
-       <p>Header</p>
+       <p>Profil Page</p>
     </template>
     <div>
        <p>Testt</p>
@@ -14,7 +14,7 @@
 
 <script>
 	
-import AppLayout from '../Shared/Applayout.vue';
+import AppLayout from '@/Shared/AppLayout';
 
 export default{
 

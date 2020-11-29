@@ -15,7 +15,7 @@ mix.js('js/app.js', 'public/js')
     .postCss('css/app.css', 'public/css', [
         //
     	require('postcss-import'),
-    ]);
+    ]).webpackConfig(require('./webpack.config'));
  
 
 

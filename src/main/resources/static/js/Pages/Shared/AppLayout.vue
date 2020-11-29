@@ -44,22 +44,24 @@
       <slot name="header"></slot>
     </div>
   </header>
+
   <main style="padding: 0.5rem 1rem;" class="py-4">
 
         <slot></slot>
 
   </main>
 
-      <div class="layout-footer">
-
-        <p>Heydar Binaliyev@2020</p>
-      </div>
+  <div class="layout-footer">
+      <p>Heydar Binaliyev@2020</p>
+  </div>
 
 </div>
 </template>
 
 <script>
 export default {
+
+  name:"AppLayout",
 
   methods:{
     goto(url){
@@ -74,7 +76,7 @@ export default {
 
 .layout-header{
 
-    margin-top: 5px;
+    margin-top: 2px;
     padding: 0.5rem 1rem;
     box-sizing: border-box;
     align-items: center;
