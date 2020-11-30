@@ -1,6 +1,9 @@
 package com.app.monolightdemo.inertia;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,28 +28,26 @@ public class Inertia {
 	@Autowired
 	private  HttpServletResponse response;
 	
-	
 	public  Object generateResponse(String component, Map<String, Object> props) {
 		
 		if(request != null) {
-
-			Map<String, Object> inertiaProps = populateProps(component, props);
 			
-			populateResponseHeaders();
-			
-			String data = new Gson().toJson(inertiaProps);
+			this.populateResponseHeaders();
 
 			if(request.getHeader("X-Inertia") != null) {
 				
 				if(request.getHeader("X-Inertia").equals("true")) {
 					
-					return new ResponseEntity<>(data, HttpStatus.OK);
+					if(this.isRequestPartialLoad(component)) 
+							props = this.createPartialData(props);
+					
+					return new ResponseEntity<>( this.generateInertiaData(component, props), HttpStatus.OK);
 				}
 			}
 			else {
 				
 				ModelAndView view = new ModelAndView(rootViewName);
-				view.addObject("page", data);
+				view.addObject( "page", this.generateInertiaData(component, props) );
 				return view;
 				
 			}
@@ -75,6 +76,38 @@ public class Inertia {
 		
 		return inertiaProps;
 		
+	}
+	private boolean isRequestPartialLoad(String component) {
+		
+		if(request.getHeader("X-Inertia-Partial-Data") != null 
+				&& request.getHeader("X-Inertia-Partial-Component").equals(component))
+			return true;
+		
+		return false;
+	}
+	
+	private Map<String, Object> createPartialData(Map<String, Object> props){
+		
+		List<String> requestedData = new ArrayList<>();
+		
+		Collections.addAll(requestedData, request.getHeader("X-Inertia-Partial-Data").split(","));
+		System.err.println(requestedData);
+		props.forEach((name,data) ->{
+			if( !requestedData.contains(name) ) {
+				props.replace(name, data, null);
+			}
+		});
+		
+		return props;
+	}
+	
+	private String generateInertiaData(String component, Map<String, Object> props) {
+		
+		Map<String, Object> inertiaProps = this.populateProps(component, props);
+		
+		String data = new Gson().toJson(inertiaProps);
+		
+		return data;
 	}
 
 }

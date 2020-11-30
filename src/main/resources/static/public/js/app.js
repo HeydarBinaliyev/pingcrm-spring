@@ -2406,9 +2406,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['name'],
+  props: ['name', 'type'],
   components: {
     AppLayout: _Shared_AppLayout__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -54966,6 +54968,20 @@ var render = function() {
               }
             },
             [_vm._v("Goto " + _vm._s(_vm.name) + " Profil")]
+          ),
+          _vm._v(" "),
+          _c(
+            "inertia-link",
+            {
+              attrs: {
+                href: "/",
+                only: ["type", "name"],
+                method: "get",
+                as: "button",
+                type: "button"
+              }
+            },
+            [_vm._v("Load Partial")]
           )
         ],
         1
@@ -67116,8 +67132,8 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\User\sts-workspace\monolight-vue\src\main\resources\static\js\app.js */"./js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\User\sts-workspace\monolight-vue\src\main\resources\static\css\app.css */"./css/app.css");
+__webpack_require__(/*! C:\Users\heydar\sts4-workspace\monolight-vue\src\main\resources\static\js\app.js */"./js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\heydar\sts4-workspace\monolight-vue\src\main\resources\static\css\app.css */"./css/app.css");
 
 
 /***/ })
