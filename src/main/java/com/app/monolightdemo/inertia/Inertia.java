@@ -77,6 +77,7 @@ public class Inertia {
 		return inertiaProps;
 		
 	}
+	
 	private boolean isRequestPartialLoad(String component) {
 		
 		if(request.getHeader("X-Inertia-Partial-Data") != null 
