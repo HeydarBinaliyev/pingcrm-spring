@@ -67132,8 +67132,8 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\heydar\sts4-workspace\monolight-vue\src\main\resources\static\js\app.js */"./js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\heydar\sts4-workspace\monolight-vue\src\main\resources\static\css\app.css */"./css/app.css");
+__webpack_require__(/*! C:\Users\User\sts-workspace\monolight-vue\src\main\resources\static\js\app.js */"./js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\User\sts-workspace\monolight-vue\src\main\resources\static\css\app.css */"./css/app.css");
 
 
 /***/ })
