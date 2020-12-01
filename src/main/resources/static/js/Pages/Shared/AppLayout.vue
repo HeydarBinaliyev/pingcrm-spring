@@ -32,7 +32,7 @@
             <em>{{$page.props.User.name}}</em>
           </template>
           <b-dropdown-item href="#">Profile</b-dropdown-item>
-          <b-dropdown-item href="#">Sign Out</b-dropdown-item>
+          <b-dropdown-item @click="logout()">Sign Out</b-dropdown-item>
         </b-nav-item-dropdown>
       </b-navbar-nav>
     </b-collapse>
@@ -66,7 +66,11 @@ export default {
   methods:{
     goto(url){
       this.$inertia.get(url);
+    },
+    logout(){
+      this.$inertia.post('logout');
     }
+
   }
 
 }

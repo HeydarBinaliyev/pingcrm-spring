@@ -1,6 +1,6 @@
 <template>
 	<div class="vertical-center">
-		 <form method="post" action="login">
+		 <form @submit.prevent="submit">
             <h3>Sign In</h3>
 
             <div class="form-group">
@@ -14,7 +14,7 @@
             </div>
           
 
-            <button type="button" @click="loginn()" class="btn btn-dark btn-lg btn-block">Sign In</button>
+            <button type="submit"  class="btn btn-dark btn-lg btn-block">Sign In</button>
         </form>
 	</div>
 </template>
@@ -23,47 +23,37 @@
 	
 export  default{
 
+  mounted(){
+    
+  },
+
+  created(){
+  
+  },
+
   data(){
 
     return {
 
       loginForm: {
-        username: '',
-        password: ''
+        username: null,
+        password: null
       }
     }
   },
 
   methods:{
-      login(){
-      
-        let that = this;
-        axios.post("/login",{username:this.loginForm.username,password:this.loginForm.password}).then(response => {
-          console.log("gggggggggg")
 
-        }).catch(function(error){
-          if(error.response){
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
-            console.log(error.response.data);
-            console.log(error.response.status);
-            console.log(error.response.headers);
+      submit() {
+        
+        let data = new FormData();
+        data.append('username', this.loginForm.username);
+        data.append('password', this.loginForm.password);
+        this.$inertia.post("/login", data);
 
-          }else if(error.request){
-            // The request was made but no response was received
-            //console.log(error.request);
-          }else{
-            // Something happened in setting up the request that triggered an Error
-            console.log('Error' , error.message);
-          }
-          //console.log(error.config);
-        });
       },
 
-      loginn(){
-        let that = this;
-        this.$inertia.post("/login?username=" + that.loginForm.username + "&password=" + that.loginForm.password,{});
-      }
+     
   }
 
 }

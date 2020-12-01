@@ -39,6 +39,7 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
 			errorResponse = new ExceptionResponse(exception.getMessage(), msg);
 		}
 		System.err.println("onAuthenticationFailure: " + request.getRequestURL());
+		response.setContentType("application/json");
 		OutputStream out = response.getOutputStream();
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(out, errorResponse);
