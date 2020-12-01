@@ -29,11 +29,11 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	@Override
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-
+		
 		String username = authentication.getName();
 
 		String password = authentication.getCredentials().toString();
-
+		System.err.println("------------authenticate()------------ " + username + " " + password);
 		UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
 		if (userDetails == null)

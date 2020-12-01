@@ -35,7 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/public/**", "/favicon.ico", "/login").permitAll().anyRequest().authenticated();
-		//http.formLogin().loginPage("/login");
+		http.formLogin().loginPage("/login");
 		http.formLogin().loginProcessingUrl("/login").failureHandler(authenticationFailureHandler).usernameParameter("username").passwordParameter("password");
 		http.exceptionHandling().accessDeniedHandler(exceptionHandling);
 		//http.formLogin().defaultSuccessUrl("/", true);
