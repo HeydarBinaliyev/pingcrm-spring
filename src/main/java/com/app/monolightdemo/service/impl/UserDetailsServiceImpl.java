@@ -27,7 +27,6 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) {
 		// TODO Auto-generated method stub
-		
 		User user = userRepository.getUserByUserName(username);
 		
 		if(user == null )
@@ -36,9 +35,7 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 		Set <Authority> grantedAuthorities = new HashSet < > ();
 		
 		grantedAuthorities = user.getAuhtorities();
-		for (Authority authority : grantedAuthorities) {
-			System.err.println(authority.getId());
-		}
+		
 		return new UserDetailsImpl(user , grantedAuthorities);
 	}
 	

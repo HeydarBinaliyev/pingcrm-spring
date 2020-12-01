@@ -6,6 +6,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import com.app.monolightdemo.security.AccessDeniedHandlerImpl;
 import com.app.monolightdemo.security.AuthenticationFailureHandlerImpl;
@@ -33,15 +34,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/public/**","/login","/user/createUser").permitAll().anyRequest().authenticated();
-		http.formLogin().loginPage("/login");
-		http.formLogin().loginProcessingUrl("/login").failureHandler(authenticationFailureHandler);
+		http.authorizeRequests().antMatchers("/public/**", "/favicon.ico", "/login").permitAll().anyRequest().authenticated();
+		//http.formLogin().loginPage("/login");
+		http.formLogin().loginProcessingUrl("/login").failureHandler(authenticationFailureHandler).usernameParameter("username").passwordParameter("password");
 		http.exceptionHandling().accessDeniedHandler(exceptionHandling);
-		//http.formLogin().defaultSuccessUrl("/login/success", true);
+		//http.formLogin().defaultSuccessUrl("/", true);
 		http.formLogin().successHandler(authenticationSuccessHandler);
 		//http.formLogin().failureForwardUrl("/login/error");
 		http.logout().logoutSuccessHandler(logoutSuccessHandler);
-        //http.csrf().disable(); 
+        http.csrf().disable(); 
+		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 	}
 
 	@Autowired

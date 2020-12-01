@@ -1,3 +1,4 @@
+require('./bootstrap')
 import { App, plugin } from '@inertiajs/inertia-vue'
 import Vue from 'vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'

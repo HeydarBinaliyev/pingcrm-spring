@@ -7,8 +7,8 @@
 
 
     <div>
-      <inertia-link href="/profil" method="get" as="button" type="button">Goto {{name}} Profil</inertia-link>
-      <inertia-link href="/" :only="['type','name']" method="get" as="button" type="button">Load Partial</inertia-link>
+      <inertia-link href="/profil" method="get" as="button" type="button">Goto {{user_name}} Profil</inertia-link>
+      <inertia-link href="/" :only="['count']" method="get" as="button" type="button">Load Partial</inertia-link>
     </div>
 
   </app-layout>
@@ -20,7 +20,7 @@ import AppLayout from "./Shared/AppLayout";
 export default{
 
 
-	props:['name','type'],
+	props:['user_name'],
 
   components:{
 	  AppLayout

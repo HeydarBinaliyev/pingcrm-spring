@@ -5,20 +5,15 @@
 
             <div class="form-group">
                 <label>Email address</label>
-                <input type="email" class="form-control form-control-lg" />
+                <input v-model="loginForm.username" type="text" class="form-control form-control-lg" />
             </div>
 
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" class="form-control form-control-lg" />
+                <input v-model="loginForm.password" type="password" class="form-control form-control-lg" />
             </div>
 
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
-
-           
-
-         
-
+            <button type="submit" @click="login()" class="btn btn-dark btn-lg btn-block">Sign In</button>
         </form>
 	</div>
 </template>
@@ -27,6 +22,52 @@
 	
 export  default{
 
+  data(){
+
+    return {
+
+      loginForm: {
+        username: '',
+        password: ''
+      }
+    }
+  },
+
+  methods:{
+      login(){
+        //console.log(this.loginForm)
+        let that = this;
+        //let url = "/login?username=" + this.loginForm.username + "&password=" + this.loginForm.password;
+
+
+        axios({
+          method:'post',
+          url:'/login',
+          data:null,
+          params:{username:'test10',password:'1234'},
+          headers:{}
+        }).then(response => {
+          console.log("gggggggggg")
+
+        }).catch(function(error){
+          if(error.response){
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.log(error.response.data);
+            console.log(error.response.status);
+            console.log(error.response.headers);
+
+          }else if(error.request){
+            // The request was made but no response was received
+            //console.log(error.request);
+          }else{
+            // Something happened in setting up the request that triggered an Error
+            console.log('Error' , error.message);
+          }
+          //console.log(error.config);
+        });
+      }
+  }
 
 }
 </script>

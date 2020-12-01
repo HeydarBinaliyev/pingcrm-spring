@@ -30,7 +30,6 @@ public class UserDetailsImpl  implements UserDetails{
 		this.user = user;
 		this.authorities = new HashSet<GrantedAuthority>();
 		for (Authority grantedAuthority : authorities) {
-			System.err.println(grantedAuthority.getName().toString());
 			this.authorities.add(new SimpleGrantedAuthority(grantedAuthority.getName().toString()));
 		}
 	}

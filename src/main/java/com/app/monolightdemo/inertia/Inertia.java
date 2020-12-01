@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.app.monolightdemo.bean.UserBean;
 import com.google.gson.Gson;
 
 @Component
@@ -21,6 +22,9 @@ import com.google.gson.Gson;
 public class Inertia {
 
 	private final String rootViewName = "index";
+	
+	@Autowired
+	UserBean userBean;
 	
 	@Autowired
 	private   HttpServletRequest request;
@@ -104,11 +108,25 @@ public class Inertia {
 	
 	private String generateInertiaData(String component, Map<String, Object> props) {
 		
+		if(!isRequestPartialLoad(component))
+			props = this.mergeProps(props);
+		
 		Map<String, Object> inertiaProps = this.populateProps(component, props);
 		
 		String data = new Gson().toJson(inertiaProps);
 		
 		return data;
+	}
+	
+	private Map<String, Object> mergeProps(Map<String, Object> props) {
+		if(!props.containsKey("User")) {
+			Map<String, Object> user  = new HashMap<>();
+			user.put("name", userBean.getUserName());
+			user.put("roles", userBean.getRoles());
+			props.put("User", user);
+		}
+		
+		return props;
 	}
 
 }

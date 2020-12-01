@@ -38,7 +38,7 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
 			String msg = messageSource.getMessage(exception.getMessage(), null,"Error code not found!", locale);
 			errorResponse = new ExceptionResponse(exception.getMessage(), msg);
 		}
-		
+		System.err.println("onAuthenticationFailure: " + request.getRequestURL());
 		OutputStream out = response.getOutputStream();
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.writeValue(out, errorResponse);
