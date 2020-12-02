@@ -42,7 +42,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		List<UserDTO> loggedInUsers = (List<UserDTO>) appContext.getBean("sessionUsers");
 		UserDTO loggedInUser = new UserDTO();
 		loggedInUser.setName(userBean.getUserName());
-		loggedInUsers.add(loggedInUser);
+		//loggedInUsers.add(loggedInUser);
 		
 		System.err.println("logged in user: " + userBean.getUserName());
 		

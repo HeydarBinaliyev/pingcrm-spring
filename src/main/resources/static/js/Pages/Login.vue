@@ -51,7 +51,9 @@ export  default{
         data.append('password', this.loginForm.password);
         axios.post("/login" , data).then(response=>{
           that.makeToast('success','login is successful');
-          that.$inertia.visit("/");
+          setTimeout(function(){
+            that.$inertia.visit("/");
+          }, 2000);
         }).catch(function (error){
            that.makeToast('danger', error.response.data.message);
            console.log(error.response.data);
