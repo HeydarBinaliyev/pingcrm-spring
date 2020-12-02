@@ -45,13 +45,27 @@ export  default{
   methods:{
 
       submit() {
-        
+        let that = this;
         let data = new FormData();
         data.append('username', this.loginForm.username);
         data.append('password', this.loginForm.password);
-        this.$inertia.post("/login", data);
+        axios.post("/login" , data).then(response=>{
+          that.makeToast('success','login is successful');
+          that.$inertia.visit("/");
+        }).catch(function (error){
+           that.makeToast('danger', error.response.data.message);
+           console.log(error.response.data);
+        });
 
       },
+
+      makeToast(variant = null, text) {
+        this.$bvToast.toast( text , {
+          title: `Login attempt`,
+          variant: variant,
+          solid: true
+        })
+      }
 
      
   }
