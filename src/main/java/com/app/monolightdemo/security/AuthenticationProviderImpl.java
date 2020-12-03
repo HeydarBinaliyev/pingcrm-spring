@@ -20,7 +20,7 @@ import com.app.monolightdemo.utils.ServiceUtils;
 
 
 @Component
-public class CustomAuthenticationProvider implements AuthenticationProvider {
+public class AuthenticationProviderImpl implements AuthenticationProvider {
 
 	@Autowired
 	UserDetailsService userDetailsService;

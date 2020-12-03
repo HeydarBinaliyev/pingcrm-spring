@@ -11,7 +11,7 @@ import com.app.monolightdemo.repository.UserRepository;
 
 @Controller
 @RequestMapping("/")
-public class WebController {
+public class DashboardController {
 
 	@Autowired
 	Inertia inertia;
