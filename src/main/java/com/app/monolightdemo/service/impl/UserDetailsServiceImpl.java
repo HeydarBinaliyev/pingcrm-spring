@@ -1,7 +1,5 @@
 package com.app.monolightdemo.service.impl;
 
-import java.util.HashSet;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 import org.springframework.stereotype.Service;
 
-import com.app.monolightdemo.entity.Authority;
+
 import com.app.monolightdemo.entity.User;
 import com.app.monolightdemo.repository.UserRepository;
 
@@ -25,18 +23,14 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 	
 	 
 	@Override
-	public UserDetails loadUserByUsername(String username) {
+	public UserDetails loadUserByUsername(String email) {
 		// TODO Auto-generated method stub
-		User user = userRepository.getUserByUserName(username);
+		User user = userRepository.getUserByUserName(email);
 		
 		if(user == null )
 			return null;
 		
-		Set <Authority> grantedAuthorities = new HashSet < > ();
-		
-		grantedAuthorities = user.getAuhtorities();
-		
-		return new UserDetailsImpl(user , grantedAuthorities);
+		return new UserDetailsImpl(user);
 	}
 	
 

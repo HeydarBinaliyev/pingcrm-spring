@@ -5,16 +5,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import com.app.monolightdemo.entity.Authority;
+
 import com.app.monolightdemo.entity.User;
+import com.app.monolightdemo.service.CustomUserDetails;
 
 
 
 
-public class UserDetailsImpl  implements UserDetails{
+
+public class UserDetailsImpl  implements CustomUserDetails{
 
 	/**
 	 * 
@@ -26,12 +26,9 @@ public class UserDetailsImpl  implements UserDetails{
 	User user;
 	Set<GrantedAuthority> authorities=null;;
 	
-	public UserDetailsImpl(User user , Set<Authority> authorities){
+	public UserDetailsImpl(User user){
 		this.user = user;
 		this.authorities = new HashSet<GrantedAuthority>();
-		for (Authority grantedAuthority : authorities) {
-			this.authorities.add(new SimpleGrantedAuthority(grantedAuthority.getName().toString()));
-		}
 	}
 	
 	
@@ -51,7 +48,7 @@ public class UserDetailsImpl  implements UserDetails{
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return user.getName();
+		return user.getFirst_name();
 	}
 
 	@Override
@@ -78,6 +75,10 @@ public class UserDetailsImpl  implements UserDetails{
 		return true;
 	}
 
+
+	public User getUser() {
+		return user;
+	}
 	
 
 }

@@ -1,65 +1,120 @@
 package com.app.monolightdemo.dto;
 
 import java.io.Serializable;
-import java.util.List;
+
+
 
 public class UserDTO implements Serializable{
 
-	
-	/**
+
+/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Long id;
-	private String name;
-	private String email;
-	private String password;
-	List<AuthorityDTO> authorities;
+
+	private Integer id;
 	
-	public Long getId() {
+		
+	private String first_name;
+	
+		
+	private String last_name;
+	
+	private String password;
+	
+
+	private String email;
+	
+	
+	
+	private Integer acccountId;
+	
+	private Integer owner;
+	
+
+	private String photoPath;
+
+
+	public Integer getId() {
 		return id;
 	}
-	public void setId(Long id) {
+
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+
+
+	public String getFirst_name() {
+		return first_name;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
 	}
-	public String getEmail() {
-		return email;
+
+
+	public String getLast_name() {
+		return last_name;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+
+
+	public void setLast_name(String last_name) {
+		this.last_name = last_name;
 	}
+
+
 	public String getPassword() {
 		return password;
 	}
+
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public List<AuthorityDTO> getAuthorities() {
-		return authorities;
+
+
+	public String getEmail() {
+		return email;
 	}
-	public void setAuthorities(List<AuthorityDTO> authorities) {
-		this.authorities = authorities;
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public Integer getAcccountId() {
+		return acccountId;
+	}
+
+
+	public void setAcccountId(Integer acccountId) {
+		this.acccountId = acccountId;
+	}
+
+
+	public Integer getOwner() {
+		return owner;
+	}
+
+
+	public void setOwner(Integer owner) {
+		this.owner = owner;
+	}
+
+
+	public String getPhotoPath() {
+		return photoPath;
+	}
+
+
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
 	}
 	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		String roles="(";
-		for (AuthorityDTO role : this.authorities) {
-			roles = roles.concat(role.getName());
-			roles = roles.concat(",");
-		}
-		roles = roles.substring(0, roles.length() - 1);
-		roles = roles.concat(")");
-		
-		return "name:" + this.name + ", email:" + this.email + ", roles:"+roles;
-	}
+	
 	
 	
 }

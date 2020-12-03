@@ -22,7 +22,7 @@ public class LoginController {
 	public Object loginPage(HttpServletRequest request) {
 		
 		//System.err.println("jsessionid: " + request.getCookies()[0].getValue());
-		return inertia.generateResponse("Login", new HashMap<>()); 
+		return inertia.generateResponse("Auth/Login", new HashMap<>()); 
 	}
 //	
 //	@RequestMapping(path = "success", method = "ff")

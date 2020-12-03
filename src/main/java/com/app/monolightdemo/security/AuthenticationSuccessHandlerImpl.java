@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +30,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	@Autowired
 	@Lazy
 	UserBean userBean;
+	
 	@Autowired
 	ApplicationContext appContext;
 	
@@ -36,17 +39,17 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		serviceUtils.populateUserBean();
+		
 		@SuppressWarnings("unchecked")
 		List<UserDTO> loggedInUsers = (List<UserDTO>) appContext.getBean("sessionUsers");
 		UserDTO loggedInUser = new UserDTO();
-		loggedInUser.setName(userBean.getUserName());
-		//loggedInUsers.add(loggedInUser);
+		loggedInUser.setEmail(userBean.getUser().getEmail());
+		loggedInUsers.add(loggedInUser);
 		
-		System.err.println("logged in user: " + userBean.getUserName());
+		System.err.println("logged in user: " + userBean.getUser().getEmail());
 		
-		response.setStatus(200);
+		RedirectStrategy redirect = new DefaultRedirectStrategy();
+		redirect.sendRedirect(request, response, "/");
 	    
 		}
 }

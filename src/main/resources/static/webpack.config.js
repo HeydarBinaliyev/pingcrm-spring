@@ -1,9 +1,11 @@
 const path = require('path');
 
 module.exports = {
+	 output: { chunkFilename: 'public/js/[name].js?id=[chunkhash]' },
     resolve: {
         alias: {
-            '@': path.resolve('js/Pages'),
+            vue$: 'vue/dist/vue.runtime.esm.js',
+            '@': path.resolve('resources/js'),
         },
     },
 };

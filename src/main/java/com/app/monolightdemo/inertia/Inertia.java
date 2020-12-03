@@ -119,14 +119,24 @@ public class Inertia {
 	}
 	
 	private Map<String, Object> mergeProps(Map<String, Object> props) {
-		if(!props.containsKey("User")) {
-			Map<String, Object> user  = new HashMap<>();
-			user.put("name", userBean.getUserName());
-			user.put("roles", userBean.getRoles());
-			props.put("User", user);
-		}
 		
+		if(!props.containsKey("auth")) {
+			Map<String, Object> auth  = new HashMap<>();
+			auth.put("user", userBean.getUser());
+			props.put("auth", auth);
+		}
+		if(!props.containsKey("errors")) {
+			Map<String, Object> errors  = new HashMap<>();
+			props.put("errors", errors);
+		}
+		if(!props.containsKey("flash")) {
+			Map<String, Object> flash  = new HashMap<>();
+			flash.put("success", null);
+			flash.put("error", null);
+			props.put("flash", flash);
+		}
 		return props;
+		
 	}
 
 }

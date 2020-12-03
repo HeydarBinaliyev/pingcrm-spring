@@ -37,7 +37,7 @@ public class LogoutSuccessHandlerImpl implements LogoutSuccessHandler{
 		Iterator<UserDTO> iterator  = loggedInUsers.iterator();
 		while(iterator.hasNext()) {
 			UserDTO userDTO = iterator.next();
-			if(userDTO.getName().equals(authentication.getName()))
+			if(userDTO.getEmail().equals(authentication.getName()))
 				iterator.remove();
 		}
 		RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
