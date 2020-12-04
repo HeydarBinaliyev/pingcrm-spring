@@ -40,11 +40,12 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
 		
-		@SuppressWarnings("unchecked")
-		List<UserDTO> loggedInUsers = (List<UserDTO>) appContext.getBean("sessionUsers");
-		UserDTO loggedInUser = new UserDTO();
-		loggedInUser.setEmail(userBean.getUser().getEmail());
-		loggedInUsers.add(loggedInUser);
+		/*
+		 * @SuppressWarnings("unchecked") List<UserDTO> loggedInUsers = (List<UserDTO>)
+		 * appContext.getBean("sessionUsers"); UserDTO loggedInUser = new UserDTO();
+		 * loggedInUser.setEmail(userBean.getUser().getEmail());
+		 * loggedInUsers.add(loggedInUser);
+		 */
 		
 		System.err.println("logged in user: " + userBean.getUser().getEmail());
 		
