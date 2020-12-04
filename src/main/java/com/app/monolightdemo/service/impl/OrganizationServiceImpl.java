@@ -2,7 +2,7 @@ package com.app.monolightdemo.service.impl;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,7 +30,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 	}
 	
 	@Override
-	public Map<String, Object> getLinks(String url, String search, String trashed, Integer page) {
+	public Object getLinks(String url, String search, String trashed, Integer page) {
 		// TODO Auto-generated method stub
 		Pageable paging = PageRequest.of(page, 10);
 		Page<Organization> organPage = organizationRepository.findByName(search, paging);
