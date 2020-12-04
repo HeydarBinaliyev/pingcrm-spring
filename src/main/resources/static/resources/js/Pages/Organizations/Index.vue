@@ -10,7 +10,7 @@
           <option value="only">Only Trashed</option>
         </select>
       </search-filter>
-      <inertia-link class="btn-indigo" :href="route('organizations.create')">
+      <inertia-link class="btn-indigo" href="/organizations/create">
         <span>Create</span>
         <span class="hidden md:inline">Organization</span>
       </inertia-link>
@@ -24,23 +24,23 @@
         </tr>
         <tr v-for="organization in organizations.data" :key="organization.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('organizations.edit', organization.id)">
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" href="/organizations/edit/{organization.id}">
               {{ organization.name }}
               <icon v-if="organization.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
             </inertia-link>
           </td>
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center" :href="route('organizations.edit', organization.id)" tabindex="-1">
+            <inertia-link class="px-6 py-4 flex items-center" href="/organizations/edit/{organization.id}" tabindex="-1">
               {{ organization.city }}
             </inertia-link>
           </td>
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center" :href="route('organizations.edit', organization.id)" tabindex="-1">
+            <inertia-link class="px-6 py-4 flex items-center" href="/organizations/edit/{organization.id}" tabindex="-1">
               {{ organization.phone }}
             </inertia-link>
           </td>
           <td class="border-t w-px">
-            <inertia-link class="px-4 flex items-center" :href="route('organizations.edit', organization.id)" tabindex="-1">
+            <inertia-link class="px-4 flex items-center" href="/organizations/edit/{organization.id}" tabindex="-1">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
             </inertia-link>
           </td>
@@ -59,7 +59,6 @@ import Icon from '@/Shared/Icon'
 import Layout from '@/Shared/Layout'
 import mapValues from 'lodash/mapValues'
 import Pagination from '@/Shared/Pagination'
-import pickBy from 'lodash/pickBy'
 import SearchFilter from '@/Shared/SearchFilter'
 import throttle from 'lodash/throttle'
 
@@ -86,8 +85,7 @@ export default {
   watch: {
     form: {
       handler: throttle(function() {
-        let query = pickBy(this.form)
-        this.$inertia.replace(this.route('organizations', Object.keys(query).length ? query : { remember: 'forget' }))
+        this.$inertia.replace("/organizations?search=" + this.form.search + "&&trashed=" + this.form.trashed)
       }, 150),
       deep: true,
     },

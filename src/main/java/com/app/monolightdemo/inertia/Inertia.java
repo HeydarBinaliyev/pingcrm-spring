@@ -15,7 +15,7 @@ import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.monolightdemo.bean.UserBean;
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 @Component
 @RequestScope
@@ -113,7 +113,7 @@ public class Inertia {
 		
 		Map<String, Object> inertiaProps = this.populateProps(component, props);
 		
-		String data = new Gson().toJson(inertiaProps);
+		String data =new GsonBuilder().serializeNulls().create().toJson(inertiaProps);
 		
 		return data;
 	}

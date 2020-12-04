@@ -1,7 +1,7 @@
 
 package com.app.monolightdemo.repository;
 
-import java.util.List;
+
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,6 +12,5 @@ import com.app.monolightdemo.entity.Organization;
 
 public interface OrganizationRepository extends JpaRepository< Organization, Integer >{
 
-	 Page<Organization> findByName(String name, Pageable pageable);
-	 List<Organization> findByName(String name);
+	 Page<Organization> findByNameContaining(String name, Pageable pageable);
 }
