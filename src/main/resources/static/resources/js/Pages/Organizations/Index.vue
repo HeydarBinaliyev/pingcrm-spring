@@ -24,7 +24,7 @@
         </tr>
         <tr v-for="organization in organizations.data" :key="organization.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" href="/organizations/edit/{organization.id}">
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="'/organizations/'+organization.id+'/edit'">
               {{ organization.name }}
               <icon v-if="organization.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
             </inertia-link>
@@ -85,7 +85,7 @@ export default {
   watch: {
     form: {
       handler: throttle(function() {
-        this.$inertia.replace("/organizations?search=" + this.form.search + "&&trashed=" + this.form.trashed)
+        this.$inertia.replace("/organizations?search=" + this.form.search + "&trashed=" + this.form.trashed)
       }, 150),
       deep: true,
     },

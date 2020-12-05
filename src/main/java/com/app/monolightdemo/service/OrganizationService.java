@@ -2,11 +2,15 @@ package com.app.monolightdemo.service;
 
 
 
-import org.springframework.stereotype.Service;
+import java.util.Map;
+
+import com.app.monolightdemo.entity.Organization;
+
+
 
 
 public interface OrganizationService {
 
-	public Object getOrganizations(String search, String trashed, Integer page);
-	public Object getLinks(String url ,String search, String trashed, Integer page);
+	public Map<String, Object> getOrganizations(String url, String search, String trashed, Integer page);
+	public Organization getOrganization(Integer id);
 }

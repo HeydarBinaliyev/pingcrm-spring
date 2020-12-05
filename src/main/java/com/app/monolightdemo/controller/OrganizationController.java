@@ -1,20 +1,19 @@
 package com.app.monolightdemo.controller;
 
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.app.monolightdemo.dto.LinkDTO;
-import com.app.monolightdemo.entity.Organization;
 import com.app.monolightdemo.inertia.Inertia;
 import com.app.monolightdemo.service.OrganizationService;
 
@@ -36,18 +35,32 @@ public class OrganizationController {
 		
 		Map<String, Object> result = new HashMap<>();
 		
-		List<Organization> organizations = (List<Organization>) organizationService.getOrganizations(search, trashed, page);
-		List<LinkDTO> links = (List<LinkDTO>) organizationService.getLinks("http://localhost:8081/organizations", search, trashed, page);
-		Map<String, Object> data = new HashMap<>();
-		data.put("data", organizations);
-		data.put("links", links);
-		result.put("organizations", data);
+		String url = request.getRequestURL() + "?";
+		
+		if(!search.equals("") || !trashed.equals(""))
+			url = url + "search=" + search + "&trashed=" + trashed + "&";
+		
+		
+		Map<String, Object> organizations = organizationService.getOrganizations(url, search, trashed, page);
+		
+		result.put("organizations", organizations);
+		
 		Map<String, String> filters = new HashMap<>();
 		filters.put("search", search);
 		filters.put("trashed", trashed);
 		result.put("filters", filters);
 		
+		System.err.println(request.getRequestURL() + " " + request.getRequestURI()+ " " + request.getQueryString());
 		
 		return inertia.generateResponse("Organizations/Index", result);
+	}
+	@RequestMapping(path = "/{id}/edit" ,method = RequestMethod.GET )
+	public Object edit(@PathVariable(name = "id") Integer id) {
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		result.put("organization", organizationService.getOrganization(id));
+		
+		return inertia.generateResponse("Organizations/Edit", result);
 	}
 }

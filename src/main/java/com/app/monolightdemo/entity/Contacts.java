@@ -6,8 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -67,9 +65,12 @@ public class Contacts {
 	@Column(name = "deleted_at")
 	private Date deleted_at;
 	
-	@OneToOne
-	@JoinColumn(name = "organization_id",insertable=false, updatable=false)
-	private Organization organization;
+	/*
+	 * @OneToOne
+	 * 
+	 * @JoinColumn(name = "organization_id",insertable=false, updatable=false)
+	 * private Organization organization;
+	 */
 	
 
 	public Integer getId() {
@@ -192,14 +193,12 @@ public class Contacts {
 		this.deleted_at = deleted_at;
 	}
 
-	public Organization getOrganization() {
-		return organization;
-	}
-
-	public void setOrganization(Organization organization) {
-		this.organization = organization;
-	}
-	
+	/*
+	 * public Organization getOrganization() { return organization; }
+	 * 
+	 * public void setOrganization(Organization organization) { this.organization =
+	 * organization; }
+	 */
 	
 	
 }

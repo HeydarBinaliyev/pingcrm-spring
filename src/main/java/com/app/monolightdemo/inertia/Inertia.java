@@ -73,7 +73,10 @@ public class Inertia {
 		
 		Map<String, Object> inertiaProps = new HashMap<>();
 		
-		inertiaProps.put("url", request.getRequestURI());
+		String url = request.getRequestURI() +
+				( request.getQueryString() !=null ? ( "?" + request.getQueryString() ):"" );
+		
+		inertiaProps.put("url", url);
 		inertiaProps.put("version","");
 		inertiaProps.put("component", component);
 		inertiaProps.put("props", props);
