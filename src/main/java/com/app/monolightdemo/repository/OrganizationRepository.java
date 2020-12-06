@@ -15,6 +15,7 @@ import com.app.monolightdemo.entity.Organization;
 @Transactional
 public interface OrganizationRepository extends JpaRepository< Organization, Integer >{
 
+	
 	 Page<Organization> findByNameContainingOrderByName(String name, Pageable pageable);
 	 Optional<Organization> findById(Integer id);
 }

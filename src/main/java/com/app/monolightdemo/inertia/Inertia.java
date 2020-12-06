@@ -1,6 +1,7 @@
 package com.app.monolightdemo.inertia;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -37,6 +38,8 @@ public class Inertia {
 		if(request != null) {
 			
 			this.populateResponseHeaders();
+			
+			this.changeRedirectCode();
 
 			if(request.getHeader("X-Inertia") != null) {
 				
@@ -57,6 +60,11 @@ public class Inertia {
 			}
 		
 		}
+		
+		return null;
+	}
+	
+	public Object redirectBack(Map<String, Object> props) {
 		
 		return null;
 	}
@@ -140,6 +148,15 @@ public class Inertia {
 		}
 		return props;
 		
+	}
+	
+	private void changeRedirectCode() {
+		
+		List<String> methods = Arrays.asList(new String[]{"PUT", "PATCH", "DELETE"});
+		
+		if(response.getStatus() == 302 && request.getHeader("X-Inertia") != null
+				&& methods.contains(request.getMethod()))
+			response.setStatus(303);
 	}
 
 }
