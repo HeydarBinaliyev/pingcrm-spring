@@ -69,10 +69,26 @@ public class OrganizationController {
 	}
 	
 	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-	public Object update(@PathVariable(name = "id") Integer id, @RequestBody OrganizationDTO organizationDTO,
-			HttpServletRequest request, HttpServletResponse response ) throws IOException {
+	public Object update(@PathVariable(name = "id") Integer id, @RequestBody OrganizationDTO organizationDTO ){
 		
-		return inertia.generateResponse("Organizations/Edit", new HashMap<>());
+		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> flash = new HashMap<>();
+		flash.put("success", "Organization updated.");
+		result.put("flash", flash);
 		
+		
+		return inertia.generateResponse(null, result);
+	}
+	
+	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+	public Object delete(@PathVariable(name = "id") Integer id) {
+		
+		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> flash = new HashMap<>();
+		flash.put("success", "Organization deleted.");
+		result.put("flash", flash);
+		
+		
+		return inertia.generateResponse(null, result);
 	}
 }

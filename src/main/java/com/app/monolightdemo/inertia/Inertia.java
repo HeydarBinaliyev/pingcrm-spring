@@ -8,9 +8,12 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,13 +36,28 @@ public class Inertia {
 	@Autowired
 	private  HttpServletResponse response;
 	
+	@Autowired
+	private HttpSession session;
+	
 	public  Object generateResponse(String component, Map<String, Object> props) {
 		
 		if(request != null) {
 			
-			this.populateResponseHeaders();
-			
 			this.changeRedirectCode();
+			
+			if(this.isRedirect()) {
+				
+				response.addHeader("Location", request.getHeader("Referer"));
+				
+				Object flash = props.get("flash");
+				
+				session.setAttribute("flash", flash);
+				
+				return new ResponseEntity<>(HttpStatus.valueOf(response.getStatus()));
+			
+			}
+				
+			this.populateResponseHeaders();
 
 			if(request.getHeader("X-Inertia") != null) {
 				
@@ -60,11 +78,6 @@ public class Inertia {
 			}
 		
 		}
-		
-		return null;
-	}
-	
-	public Object redirectBack(Map<String, Object> props) {
 		
 		return null;
 	}
@@ -107,7 +120,7 @@ public class Inertia {
 		List<String> requestedData = new ArrayList<>();
 		
 		Collections.addAll(requestedData, request.getHeader("X-Inertia-Partial-Data").split(","));
-		System.err.println(requestedData);
+		
 		props.forEach((name,data) ->{
 			if( !requestedData.contains(name) ) {
 				props.replace(name, data, null);
@@ -142,20 +155,32 @@ public class Inertia {
 		}
 		if(!props.containsKey("flash")) {
 			Map<String, Object> flash  = new HashMap<>();
-			flash.put("success", null);
-			flash.put("error", null);
+			if(session.getAttribute("flash") != null) {
+				
+				@SuppressWarnings("unchecked")
+				Map<String, Object> session_flash = (Map<String, Object>) session.getAttribute("flash");
+				flash.put("success", session_flash.get("success"));
+				flash.put("error", session_flash.get("error"));
+				session.removeAttribute("flash");
+			}
+			
 			props.put("flash", flash);
 		}
 		return props;
 		
 	}
 	
+	private boolean isRedirect() {
+		
+		return response.getStatus() == 303?true:false;
+		
+	}
+	
 	private void changeRedirectCode() {
 		
-		List<String> methods = Arrays.asList(new String[]{"PUT", "PATCH", "DELETE"});
+		List<String> methodsForRedirect = Arrays.asList(new String[]{"PUT", "PATCH", "DELETE"});
 		
-		if(response.getStatus() == 302 && request.getHeader("X-Inertia") != null
-				&& methods.contains(request.getMethod()))
+		if(request.getHeader("X-Inertia") != null && methodsForRedirect.contains(request.getMethod()))
 			response.setStatus(303);
 	}
 
