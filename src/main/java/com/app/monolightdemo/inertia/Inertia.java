@@ -34,7 +34,7 @@ public class Inertia {
 	private   HttpServletRequest request;
 	
 	@Autowired
-	private  HttpServletResponse response;
+	private   HttpServletResponse response;
 	
 	@Autowired
 	private HttpSession session;

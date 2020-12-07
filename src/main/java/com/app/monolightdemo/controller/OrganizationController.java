@@ -73,6 +73,11 @@ public class OrganizationController {
 		
 		Map<String, Object> result = new HashMap<>();
 		Map<String, Object> flash = new HashMap<>();
+		
+		organizationDTO.setId(id);
+		
+		organizationService.updateOrganization(organizationDTO);
+		
 		flash.put("success", "Organization updated.");
 		result.put("flash", flash);
 		
@@ -85,10 +90,66 @@ public class OrganizationController {
 		
 		Map<String, Object> result = new HashMap<>();
 		Map<String, Object> flash = new HashMap<>();
+		
+		organizationService.deleteOrganization(id);
+		
 		flash.put("success", "Organization deleted.");
 		result.put("flash", flash);
 		
 		
 		return inertia.generateResponse(null, result);
+	}
+	
+	@RequestMapping(path = "/{id}/restore", method = RequestMethod.PUT)
+	public Object restore(@PathVariable(name = "id") Integer id) {
+		
+		Map<String, Object> result = new HashMap<>();
+		Map<String, Object> flash = new HashMap<>();
+		
+		organizationService.restoreOrganization(id);
+		
+		flash.put("success", "Organization restored.");
+		result.put("flash", flash);
+		
+		
+		return inertia.generateResponse(null, result);
+	}
+	
+	@RequestMapping(path = "/create", method = RequestMethod.GET)
+	public Object create() {
+		return inertia.generateResponse("Organizations/Create", new HashMap<>());
+	}
+	
+	@RequestMapping(path = "/store", method = RequestMethod.POST)
+	public Object store(@RequestBody OrganizationDTO organizationDTO, HttpServletRequest request,
+			HttpServletResponse response) throws IOException {
+		
+		Map<String, Object> flash = new HashMap<>();
+		
+		try {
+			
+			this.organizationService.storeOrganization(organizationDTO);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO Auto-generated catch block
+			flash.put("error", "Organization could not created.");
+			Map<String, Object> result = new HashMap<>();
+			result.put("flash", flash);
+			return inertia.generateResponse("Organizations/Create", result);
+			
+			
+		}
+		
+		
+		
+		flash.put("success", "Organization created.");
+		
+		request.getSession().setAttribute("flash", flash);
+		
+		response.sendRedirect("/organizations");
+		
+		return null;
 	}
 }

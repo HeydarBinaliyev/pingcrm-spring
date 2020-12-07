@@ -123,7 +123,7 @@ export default {
     },
     restore() {
       if (confirm('Are you sure you want to restore this organization?')) {
-        this.$inertia.put('/organizations/' + this.organization.id)
+        this.$inertia.put('/organizations/' + this.organization.id + "/restore")
       }
     },
   },

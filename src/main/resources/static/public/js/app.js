@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "public/js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"6b5081f8fa08ae640739","1":"d43406168216a6a80c13","2":"cb18346c69a5ed5a4223","3":"cd33a0852451ad60a138","4":"d93593cc6eac8746f358","5":"2d3510983ebea80c310a","6":"b64180893d8b34e2ad9a","7":"bdc6b0d0823a4d5920af","8":"7a7c67e0bf2f0ecfdec9","9":"a3b2e367f528c24a79b3","10":"8ac6ca13a34beae624f2","11":"0c02656033a6ab93c39f","12":"7413583972b71fd1d32c","13":"ea35bd2987e051dcbb35","14":"c168fee7b6db093c750a","15":"a3fd90ca1c41dda35fa3","16":"0be6191e77db5f57914b"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "public/js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"6b5081f8fa08ae640739","2":"cb18346c69a5ed5a4223","3":"cd33a0852451ad60a138","4":"d93593cc6eac8746f358","5":"2d3510983ebea80c310a","6":"b64180893d8b34e2ad9a","7":"233c21775a966bcd5103","8":"7a7c67e0bf2f0ecfdec9","9":"a3b2e367f528c24a79b3","10":"8ac6ca13a34beae624f2","11":"0c02656033a6ab93c39f","12":"7413583972b71fd1d32c","13":"ea35bd2987e051dcbb35","14":"1fe79b6457d21a1dcebb","15":"a3fd90ca1c41dda35fa3","16":"0be6191e77db5f57914b","17":"9cec3fc5eb6eef3730cb"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -14469,33 +14469,33 @@ var map = {
 	],
 	"./Contacts/Create": [
 		"./resources/js/Pages/Contacts/Create.vue",
-		1,
+		17,
 		0,
 		6
 	],
 	"./Contacts/Create.vue": [
 		"./resources/js/Pages/Contacts/Create.vue",
-		1,
+		17,
 		0,
 		6
 	],
 	"./Contacts/Edit": [
 		"./resources/js/Pages/Contacts/Edit.vue",
-		1,
+		17,
 		0,
 		3,
 		12
 	],
 	"./Contacts/Edit.vue": [
 		"./resources/js/Pages/Contacts/Edit.vue",
-		1,
+		17,
 		0,
 		3,
 		12
 	],
 	"./Contacts/Index": [
 		"./resources/js/Pages/Contacts/Index.vue",
-		1,
+		17,
 		2,
 		0,
 		4,
@@ -14503,7 +14503,7 @@ var map = {
 	],
 	"./Contacts/Index.vue": [
 		"./resources/js/Pages/Contacts/Index.vue",
-		1,
+		17,
 		2,
 		0,
 		4,
@@ -14511,97 +14511,97 @@ var map = {
 	],
 	"./Dashboard/Index": [
 		"./resources/js/Pages/Dashboard/Index.vue",
-		1,
+		17,
 		0,
 		13
 	],
 	"./Dashboard/Index.vue": [
 		"./resources/js/Pages/Dashboard/Index.vue",
-		1,
+		17,
 		0,
 		13
 	],
 	"./Organizations/Create": [
 		"./resources/js/Pages/Organizations/Create.vue",
-		1,
+		17,
 		0,
 		7
 	],
 	"./Organizations/Create.vue": [
 		"./resources/js/Pages/Organizations/Create.vue",
-		1,
+		17,
 		0,
 		7
 	],
 	"./Organizations/Edit": [
 		"./resources/js/Pages/Organizations/Edit.vue",
-		1,
+		17,
 		0,
 		3,
 		14
 	],
 	"./Organizations/Edit.vue": [
 		"./resources/js/Pages/Organizations/Edit.vue",
-		1,
+		17,
 		0,
 		3,
 		14
 	],
 	"./Organizations/Index": [
 		"./resources/js/Pages/Organizations/Index.vue",
-		1,
+		17,
 		2,
 		0,
 		9
 	],
 	"./Organizations/Index.vue": [
 		"./resources/js/Pages/Organizations/Index.vue",
-		1,
+		17,
 		2,
 		0,
 		9
 	],
 	"./Reports/Index": [
 		"./resources/js/Pages/Reports/Index.vue",
-		1,
+		17,
 		0,
 		15
 	],
 	"./Reports/Index.vue": [
 		"./resources/js/Pages/Reports/Index.vue",
-		1,
+		17,
 		0,
 		15
 	],
 	"./Users/Create": [
 		"./resources/js/Pages/Users/Create.vue",
-		1,
+		17,
 		0,
 		5
 	],
 	"./Users/Create.vue": [
 		"./resources/js/Pages/Users/Create.vue",
-		1,
+		17,
 		0,
 		5
 	],
 	"./Users/Edit": [
 		"./resources/js/Pages/Users/Edit.vue",
-		1,
+		17,
 		0,
 		3,
 		11
 	],
 	"./Users/Edit.vue": [
 		"./resources/js/Pages/Users/Edit.vue",
-		1,
+		17,
 		0,
 		3,
 		11
 	],
 	"./Users/Index": [
 		"./resources/js/Pages/Users/Index.vue",
-		1,
+		17,
 		2,
 		0,
 		4,
@@ -14609,7 +14609,7 @@ var map = {
 	],
 	"./Users/Index.vue": [
 		"./resources/js/Pages/Users/Index.vue",
-		1,
+		17,
 		2,
 		0,
 		4,
