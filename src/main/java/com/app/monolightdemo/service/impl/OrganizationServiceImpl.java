@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.app.monolightdemo.bean.UserBean;
 import com.app.monolightdemo.dto.LinkDTO;
 import com.app.monolightdemo.dto.OrganizationDTO;
 import com.app.monolightdemo.entity.Organization;
@@ -25,6 +26,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
 	@Autowired
 	OrganizationRepository organizationRepository;
+	
+	@Autowired
+	UserBean userBean;
 	
 	@Override
 	public Map<String, Object> getOrganizations(String url, String search, String trashed, Integer page) {
@@ -97,8 +101,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 		ModelMapper mapper = new ModelMapper();
 		Organization organization = mapper.map(organizationDTO, Organization.class);
 		organization.setCreated_at(new Date());
+		organization.setUpdated_at(new Date());
+		organization.setAccount_id(userBean.getUser().getAcccountId());
 		organizationRepository.save(organization);
-		organizationRepository.flush();
 	}
 
 

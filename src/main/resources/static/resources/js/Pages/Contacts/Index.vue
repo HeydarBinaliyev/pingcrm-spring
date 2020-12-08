@@ -10,7 +10,7 @@
           <option value="only">Only Trashed</option>
         </select>
       </search-filter>
-      <inertia-link class="btn-indigo" :href="route('contacts.create')">
+      <inertia-link class="btn-indigo" href="/contacts/create">
         <span>Create</span>
         <span class="hidden md:inline">Contact</span>
       </inertia-link>
@@ -25,30 +25,30 @@
         </tr>
         <tr v-for="contact in contacts.data" :key="contact.id" class="hover:bg-gray-100 focus-within:bg-gray-100">
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="route('contacts.edit', contact.id)">
+            <inertia-link class="px-6 py-4 flex items-center focus:text-indigo-500" :href="'/contacts/' +contact.id + '/edit'">
               {{ contact.name }}
               <icon v-if="contact.deleted_at" name="trash" class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2" />
             </inertia-link>
           </td>
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center" :href="route('contacts.edit', contact.id)" tabindex="-1">
+            <inertia-link class="px-6 py-4 flex items-center" :href="'/contacts/' +contact.id + '/edit'" tabindex="-1">
               <div v-if="contact.organization">
                 {{ contact.organization.name }}
               </div>
             </inertia-link>
           </td>
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center" :href="route('contacts.edit', contact.id)" tabindex="-1">
+            <inertia-link class="px-6 py-4 flex items-center" :href="'/contacts/' +contact.id + '/edit'" tabindex="-1">
               {{ contact.city }}
             </inertia-link>
           </td>
           <td class="border-t">
-            <inertia-link class="px-6 py-4 flex items-center" :href="route('contacts.edit', contact.id)" tabindex="-1">
+            <inertia-link class="px-6 py-4 flex items-center" :href="'/contacts/' +contact.id + '/edit'" tabindex="-1">
               {{ contact.phone }}
             </inertia-link>
           </td>
           <td class="border-t w-px">
-            <inertia-link class="px-4 flex items-center" :href="route('contacts.edit', contact.id)" tabindex="-1">
+            <inertia-link class="px-4 flex items-center" :href="'/contacts/' +contact.id + '/edit'" tabindex="-1">
               <icon name="cheveron-right" class="block w-6 h-6 fill-gray-400" />
             </inertia-link>
           </td>

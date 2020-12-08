@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import java.util.Map;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -58,6 +59,7 @@ public class OrganizationController {
 		
 		return inertia.generateResponse("Organizations/Index", result);
 	}
+	
 	@RequestMapping(path = "/{id}/edit" ,method = RequestMethod.GET )
 	public Object edit(@PathVariable(name = "id") Integer id) {
 		
@@ -121,8 +123,8 @@ public class OrganizationController {
 	}
 	
 	@RequestMapping(path = "/store", method = RequestMethod.POST)
-	public Object store(@RequestBody OrganizationDTO organizationDTO, HttpServletRequest request,
-			HttpServletResponse response) throws IOException {
+	public void store(@RequestBody OrganizationDTO organizationDTO, HttpServletRequest request,
+			HttpServletResponse response) throws IOException, ServletException {
 		
 		Map<String, Object> flash = new HashMap<>();
 		
@@ -130,19 +132,15 @@ public class OrganizationController {
 			
 			this.organizationService.storeOrganization(organizationDTO);
 			
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Auto-generated catch block
-			flash.put("error", "Organization could not created.");
-			Map<String, Object> result = new HashMap<>();
-			result.put("flash", flash);
-			return inertia.generateResponse("Organizations/Create", result);
-			
-			
+			Map<String, Object> errors = new HashMap<>();
+			errors.put("name", "Organization could not created.");
+			request.getSession().setAttribute("errors", errors);
+			response.sendRedirect("/organizations/create");
+			return;
 		}
-		
-		
 		
 		flash.put("success", "Organization created.");
 		
@@ -150,6 +148,5 @@ public class OrganizationController {
 		
 		response.sendRedirect("/organizations");
 		
-		return null;
 	}
 }
