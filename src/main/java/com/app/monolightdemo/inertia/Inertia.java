@@ -158,7 +158,7 @@ public class Inertia {
 
 			Map<String, Object> auth = new HashMap<>();
 
-			auth.put("user", userBean.getUser());
+			auth.put("user", userBean.getUserData());
 
 			props.put("auth", auth);
 		}

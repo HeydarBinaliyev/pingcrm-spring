@@ -20,6 +20,7 @@ import com.app.monolightdemo.dto.OrganizationDTO;
 import com.app.monolightdemo.entity.Organization;
 import com.app.monolightdemo.repository.OrganizationRepository;
 import com.app.monolightdemo.service.OrganizationService;
+import com.app.monolightdemo.utils.PagingUtil;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
@@ -29,6 +30,8 @@ public class OrganizationServiceImpl implements OrganizationService {
 	
 	@Autowired
 	UserBean userBean;
+	@Autowired
+	PagingUtil pagingUtil;
 	
 	@Override
 	public Map<String, Object> getOrganizations(String url, String search, String trashed, Integer page) {
@@ -41,27 +44,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 		
 		result.put("data", organizations.getContent());
 		
-		List<LinkDTO> links = new ArrayList<>();
-		
-		int totalPages = organizations.getTotalPages();
-		
-		for(int i=1; i <= totalPages; i++ ) {
-			
-			if(i == 1) {
-				LinkDTO previous = new LinkDTO(page == 1?null:(url + "page=" + (page-1)),"Previous", false);
-				links.add(previous);
-			}
-		
-			LinkDTO link = new LinkDTO(url + "page=" + i, String.valueOf(i), (page == i || (page == 1 && i==1) ?true:false));
-			links.add(link);
-			
-			if(i == totalPages) {
-				int nextPage = page + 1;
-				String _url = totalPages == 1 || page == totalPages ? null: url + "page=" + nextPage;
-				LinkDTO next = new LinkDTO(_url, "Next", false);
-				links.add(next);
-			}
-		}
+		List<LinkDTO> links = pagingUtil.createpagingList(url, page, organizations.getTotalPages());
 		
 		result.put("links", links);
 		
@@ -106,5 +89,20 @@ public class OrganizationServiceImpl implements OrganizationService {
 		organizationRepository.save(organization);
 	}
 
+	@Override
+	public List<Map<String, Object>> findAll() {
+		// TODO Auto-generated method stub
+		List<Organization> organizations = organizationRepository.findAll();
+		List<Map<String, Object>> result = new ArrayList<Map<String,Object>>();
+		organizations.forEach(organization->{
+			
+			Map<String, Object> row = new HashMap<>();
+			row.put("id", organization.getId());
+			row.put("name", organization.getName());
+			result.add(row);
+			
+		});
+		return result;
+	}
 
 }

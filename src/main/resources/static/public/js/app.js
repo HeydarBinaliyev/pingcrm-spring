@@ -43,7 +43,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "public/js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"75d2835452321451c9bf","1":"d43406168216a6a80c13","2":"cb18346c69a5ed5a4223","3":"b5641aac159693374cfe","4":"99b3fcb72380bf9f6843","5":"7ea238998db5fdb880f7","6":"9c9cc98ddd0e46224244","7":"e13b7a1f5ea8cd378ea6","8":"47ab1bc132f78bf9aeb6","9":"fe3b2217f2269b821c6e","10":"fe202a86bbb9a6e14f20","11":"a68b7afcf02c6c75e7ed","12":"67f665e2829336827163","13":"420c2b1753c50feda05d","14":"58fccec25d6fb27c4421","15":"f6ae8d134205a2a661b7","16":"dcb707e54484655c9f0f"}[chunkId] + ""
+/******/ 		return __webpack_require__.p + "public/js/" + ({}[chunkId]||chunkId) + ".js?id=" + {"0":"7e4c1d62abf9ac0a1ffe","1":"d43406168216a6a80c13","2":"cb18346c69a5ed5a4223","3":"16231499ebcd66b2eaab","4":"085b8bbc9f4ae88e0bdb","5":"8278429a159e351834bc","6":"86c2fc548d7010b95e5f","7":"4102c2c59ac656199c52","8":"0eaed905defc85f41908","9":"8a322854b71ac6a86c99","10":"954d7383ef879235d247","11":"9d5e1095cb555c3d70b3","12":"8ad890372b082e0d2b88","13":"7c9ee3f9faffc2958e7e","14":"bcce77a0001c65e05d5a","15":"fde2b148f69d3a6b16b9","16":"aadab962f4189445345e"}[chunkId] + ""
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -14695,8 +14695,8 @@ new vue__WEBPACK_IMPORTED_MODULE_0__["default"]({
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\heydar\sts4-workspace\monolight-vue\src\main\resources\static\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\heydar\sts4-workspace\monolight-vue\src\main\resources\static\resources\css\app.css */"./resources/css/app.css");
+__webpack_require__(/*! C:\Users\User\Desktop\static\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\User\Desktop\static\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

@@ -1,7 +1,6 @@
 package com.app.monolightdemo.security;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +16,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.stereotype.Component;
 
 import com.app.monolightdemo.bean.UserBean;
-import com.app.monolightdemo.dto.UserDTO;
 import com.app.monolightdemo.utils.ServiceUtils;
 
 

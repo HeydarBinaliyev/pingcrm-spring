@@ -2,6 +2,7 @@ package com.app.monolightdemo.service;
 
 
 
+import java.util.List;
 import java.util.Map;
 
 import com.app.monolightdemo.dto.OrganizationDTO;
@@ -23,4 +24,6 @@ public interface OrganizationService {
 	public void restoreOrganization(Integer id);
 	
 	public void storeOrganization(OrganizationDTO organizationDTO) throws Exception;
+	
+	public List<Map<String, Object>> findAll();
 }

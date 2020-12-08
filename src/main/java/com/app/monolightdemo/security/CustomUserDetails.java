@@ -1,4 +1,4 @@
-package com.app.monolightdemo.service;
+package com.app.monolightdemo.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,4 +1,4 @@
-package com.app.monolightdemo.service.impl;
+package com.app.monolightdemo.security;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 
 
 import com.app.monolightdemo.entity.User;
-import com.app.monolightdemo.service.CustomUserDetails;
 
 
 

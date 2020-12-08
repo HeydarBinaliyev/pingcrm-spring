@@ -25,6 +25,10 @@ public class ContactsDTO {
 	private String country;
 
 	private String postal_code;
+	
+	private String deleted_at;
+	
+	private OrganizationDTO organization;
 
 	public Integer getId() {
 		return id;
@@ -120,6 +124,22 @@ public class ContactsDTO {
 
 	public void setPostal_code(String postal_code) {
 		this.postal_code = postal_code;
+	}
+
+	public OrganizationDTO getOrganization() {
+		return organization;
+	}
+
+	public void setOrganization(OrganizationDTO organization) {
+		this.organization = organization;
+	}
+
+	public String getDeleted_at() {
+		return deleted_at;
+	}
+
+	public void setDeleted_at(String deleted_at) {
+		this.deleted_at = deleted_at;
 	}
 	
 	

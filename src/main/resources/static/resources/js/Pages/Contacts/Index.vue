@@ -95,7 +95,7 @@ export default {
     form: {
       handler: throttle(function() {
         let query = pickBy(this.form)
-        this.$inertia.replace(this.route('contacts', Object.keys(query).length ? query : { remember: 'forget' }))
+        this.$inertia.replace("/contacts?search=" + this.form.search + "&trashed=" + this.form.trashed)
       }, 150),
       deep: true,
     },

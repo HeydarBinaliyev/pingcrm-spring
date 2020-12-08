@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component;
 
 import com.app.monolightdemo.dto.UserDTO;
 import com.app.monolightdemo.exception.CustomLoginException;
-import com.app.monolightdemo.service.CustomUserDetails;
 import com.app.monolightdemo.utils.ServiceUtils;
 
 
