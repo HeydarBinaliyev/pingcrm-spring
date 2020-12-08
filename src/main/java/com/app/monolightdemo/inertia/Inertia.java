@@ -72,7 +72,9 @@ public class Inertia {
 			else {
 				
 				ModelAndView view = new ModelAndView(rootViewName);
+				
 				view.addObject( "page", this.generateInertiaData(component, props) );
+				
 				return view;
 				
 			}
@@ -85,7 +87,9 @@ public class Inertia {
 	private  void populateResponseHeaders() {
 		
 		response.addHeader("X-Inertia", "true");
+		
 		response.addHeader("Vary", "Accept");
+		
 		response.addHeader("Content-Type", "application/json");
 		
 	}
@@ -98,8 +102,11 @@ public class Inertia {
 				( request.getQueryString() !=null ? ( "?" + request.getQueryString() ):"" );
 		
 		inertiaProps.put("url", url);
+	
 		inertiaProps.put("version","");
+		
 		inertiaProps.put("component", component);
+	
 		inertiaProps.put("props", props);
 		
 		return inertiaProps;
@@ -122,8 +129,11 @@ public class Inertia {
 		Collections.addAll(requestedData, request.getHeader("X-Inertia-Partial-Data").split(","));
 		
 		props.forEach((name,data) ->{
+			
 			if( !requestedData.contains(name) ) {
+				
 				props.replace(name, data, null);
+				
 			}
 		});
 		
@@ -145,22 +155,32 @@ public class Inertia {
 	private Map<String, Object> mergeProps(Map<String, Object> props) {
 		
 		if(!props.containsKey("auth")) {
+			
 			Map<String, Object> auth  = new HashMap<>();
+			
 			auth.put("user", userBean.getUser());
+			
 			props.put("auth", auth);
 		}
 		if(!props.containsKey("errors")) {
+			
 			Map<String, Object> errors  = new HashMap<>();
+			
 			props.put("errors", errors);
 		}
 		if(!props.containsKey("flash")) {
+			
 			Map<String, Object> flash  = new HashMap<>();
+			
 			if(session.getAttribute("flash") != null) {
 				
 				@SuppressWarnings("unchecked")
 				Map<String, Object> session_flash = (Map<String, Object>) session.getAttribute("flash");
+				
 				flash.put("success", session_flash.get("success"));
+				
 				flash.put("error", session_flash.get("error"));
+				
 				session.removeAttribute("flash");
 			}
 			
