@@ -36,6 +36,7 @@ public class UserBean {
 		Map<String, Object> account = new HashMap<>();
 		account.put("id", getUser().getAccount().getId());
 		account.put("name", getUser().getAccount().getName());
+		System.err.println(getUser().getAccount().getName());
 		userData.put("account", account);
 		userData.put("id", getUser().getId());
 		userData.put("first_name", getUser().getFirst_name());

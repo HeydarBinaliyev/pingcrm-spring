@@ -1,10 +1,4 @@
 package com.app.monolightdemo.entity;
-
-
-
-
-
-
 import java.util.Date;
 
 import javax.persistence.CascadeType;
@@ -52,7 +46,7 @@ public class User {
 	private Integer owner;
 	
 	@Column(name = "photo_path")
-	private String photoPath;
+	private String photo;
 	
 	@JsonIgnore
 	@Column(name = "remember_token")
@@ -132,12 +126,14 @@ public class User {
 		this.owner = owner;
 	}
 
-	public String getPhotoPath() {
-		return photoPath;
+	
+
+	public String getPhoto() {
+		return photo;
 	}
 
-	public void setPhotoPath(String photoPath) {
-		this.photoPath = photoPath;
+	public void setPhoto(String photo) {
+		this.photo = photo;
 	}
 
 	public String getRememberToken() {

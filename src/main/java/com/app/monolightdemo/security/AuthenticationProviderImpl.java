@@ -36,7 +36,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		String email = authentication.getName();
 
 		String password = authentication.getCredentials().toString();
-
+		System.err.println("username: " + email);
 		CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(email);
 
 		if (userDetails == null)
@@ -55,7 +55,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 				throw new CustomLoginException("error.login.106");
 		
 		serviceUtils.populateUserBean(userDetails.getUser());
-
+		
 		return new UsernamePasswordAuthenticationToken(email, userDetails.getPassword(), userDetails.getAuthorities());
 
 	}

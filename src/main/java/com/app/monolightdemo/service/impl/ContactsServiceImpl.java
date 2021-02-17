@@ -1,6 +1,7 @@
 package com.app.monolightdemo.service.impl;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.app.monolightdemo.bean.UserBean;
 import com.app.monolightdemo.dto.ContactsDTO;
 import com.app.monolightdemo.dto.LinkDTO;
 import com.app.monolightdemo.entity.Contacts;
@@ -34,6 +36,9 @@ public class ContactsServiceImpl implements ContactsService {
 	
 	@Autowired
 	PagingUtil paggingUtil;
+	
+	@Autowired
+	UserBean userBean;
 	
 	@Override
 	public Map<String, Object> getContacts(String url, String search, String trashed, Integer page) {
@@ -94,5 +99,51 @@ public class ContactsServiceImpl implements ContactsService {
 		ContactsDTO contactDTO = mapper.map(contact);
 		
 		return contactDTO;
+	}
+	
+	@Override
+	public void updateContact(ContactsDTO contactDTO) {
+		// TODO Auto-generated method stub
+		ModelMapper modelMapper = new ModelMapper();
+	
+		Contacts contact = modelMapper.map(contactDTO, Contacts.class);
+		
+		contact.setAccount_id(userBean.getUser().getAcccountId());
+		
+		contactsRepository.save(contact);
+		
+	}
+	
+	@Override
+	public void deleteContact(Integer id) {
+		// TODO Auto-generated method stub
+		Optional<Contacts> contactOptional = contactsRepository.findById(id);
+		Contacts contact = contactOptional.get();
+		contact.setDeleted_at(new Date());
+		contactsRepository.save(contact);
+	}
+	
+	@Override
+	public void restoreContact(Integer id) {
+		// TODO Auto-generated method stub
+		Optional<Contacts> contactOptional = contactsRepository.findById(id);
+		Contacts contact = contactOptional.get();
+		contact.setDeleted_at(null);
+		contactsRepository.save(contact);
+	}
+	
+	@Override
+	public void storeContact(ContactsDTO contactDTO) {
+		// TODO Auto-generated method stub
+		ModelMapper modelMapper = new ModelMapper();
+		
+		Contacts contact = modelMapper.map(contactDTO, Contacts.class);
+		
+		contact.setUpdated_at(new Date());
+		contact.setCreated_at(new Date());
+		contact.setAccount_id(userBean.getUser().getAcccountId());
+		
+		contactsRepository.save(contact);
+		
 	}
 }

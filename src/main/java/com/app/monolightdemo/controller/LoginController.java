@@ -21,13 +21,7 @@ public class LoginController {
 	@GetMapping
 	public Object loginPage(HttpServletRequest request) {
 		
-		//System.err.println("jsessionid: " + request.getCookies()[0].getValue());
 		return inertia.generateResponse("Auth/Login", new HashMap<>()); 
 	}
-//	
-//	@RequestMapping(path = "success", method = "ff")
-//	public ModelAndView homePage() {
-//		
-//		return inertia.generateResponse("home", )
-//	}
+
 }

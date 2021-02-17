@@ -48,7 +48,10 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		System.err.println("logged in user: " + userBean.getUser().getEmail());
 		
 		RedirectStrategy redirect = new DefaultRedirectStrategy();
-		redirect.sendRedirect(request, response, "/");
+		response.setHeader("X-Inertia", "true");
+		System.err.println("auth siuccess");
+		//redirect.sendRedirect(request, response, "/");
+		response.sendRedirect("/");
 	    
 		}
 }

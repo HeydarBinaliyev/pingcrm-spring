@@ -21,4 +21,5 @@ public interface ContactsRepositoy extends JpaRepository<Contacts, Integer> {
 	
 	@Query(value =" from Contacts c where c.first_name like :first_name and c.last_name like :last_name and c.deleted_at!=null")
 	public Page<Contacts> findByNameAndSurnameAndOnlyTrashed(@Param("first_name") String first_name,@Param("last_name") String last_name, Pageable pageable);
+
 }
