@@ -1,4 +1,5 @@
 package com.app.monolightdemo.config;
+import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -13,5 +14,10 @@ public class ApplicationConfig {
         source.setBasenames("messages/messages");
         source.setUseCodeAsDefaultMessage(true);
         return source;
+    }
+    
+    @Bean
+    ModelMapper getModelMapper() {
+    	return new ModelMapper();
     }
 }

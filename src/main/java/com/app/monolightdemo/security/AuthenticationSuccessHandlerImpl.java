@@ -10,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.DefaultRedirectStrategy;
-import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -47,9 +45,9 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 		
 		System.err.println("logged in user: " + userBean.getUser().getEmail());
 		
-		RedirectStrategy redirect = new DefaultRedirectStrategy();
+		//RedirectStrategy redirect = new DefaultRedirectStrategy();
 		response.setHeader("X-Inertia", "true");
-		System.err.println("auth siuccess");
+		System.err.println("auth success");
 		//redirect.sendRedirect(request, response, "/");
 		response.sendRedirect("/");
 	    

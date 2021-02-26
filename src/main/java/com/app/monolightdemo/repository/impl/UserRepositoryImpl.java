@@ -23,7 +23,6 @@ public class UserRepositoryImpl  implements UserRepository{
 	@Autowired
 	EntityManager em;
 	
-	
 	@Override
 	public User getUserByUserName(String userName) {
 		// TODO Auto-generated method stub
@@ -40,6 +39,20 @@ public class UserRepositoryImpl  implements UserRepository{
 		return user;
 	}
 	
+	@Override
+	public User getUserById(Integer id) {
+		Query query = em.createQuery("FROM User u where u.id=:id");
+		query.setParameter("id", id);
+		User user = null;
+		try {
+			 user = (User) query.getSingleResult();
+			
+		}catch (NoResultException e) {
+			// TODO: handle exception
+			return null;
+		}
+		return user;
+	}
 	
 	@Override
 	public List<UserDTO> getAllUsers(String search, String trashed, String role) {
@@ -60,6 +73,17 @@ public class UserRepositoryImpl  implements UserRepository{
 		});
 		return usersDTO;
 	}
+	
+	@Override
+	public void saveUser(User user) {
+		em.persist(user);
+		em.flush();
+	}
 
+	@Override
+	public void mergeUser(User user) {
+		em.merge(user);
+		em.flush();
+	}
 	
 }

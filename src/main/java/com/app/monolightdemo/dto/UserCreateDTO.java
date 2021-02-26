@@ -2,6 +2,8 @@ package com.app.monolightdemo.dto;
 
 public class UserCreateDTO {
 	
+	private Integer id;
+	
 	private String first_name;
 	
 	private String last_name;
@@ -12,6 +14,12 @@ public class UserCreateDTO {
 	
 	private Integer owner;
 	
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	public String getFirst_name() {
 		return first_name;
 	}

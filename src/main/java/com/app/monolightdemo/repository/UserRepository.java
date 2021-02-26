@@ -7,6 +7,9 @@ import com.app.monolightdemo.entity.User;
 
 public interface UserRepository {
 
-	User getUserByUserName(String userName);
-	List<UserDTO> getAllUsers(String search, String trashed, String role);
+	public User getUserByUserName(String userName);
+	public List<UserDTO> getAllUsers(String search, String trashed, String role);
+	public void saveUser(User user);
+	public User getUserById(Integer id);
+	public void mergeUser(User user);
 }
