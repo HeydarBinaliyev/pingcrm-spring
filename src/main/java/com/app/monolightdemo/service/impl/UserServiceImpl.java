@@ -2,6 +2,8 @@ package com.app.monolightdemo.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,70 +20,94 @@ import com.app.monolightdemo.service.UserService;
 @Service
 public class UserServiceImpl implements UserService {
 
-	
 	@Autowired
 	UserRepository userRepository;
-	
+
 	@Autowired
 	UserBean userBean;
-	
+
 	@Autowired
 	ModelMapper mapper;
-	
-	
+
 	@Override
 	public List<UserDTO> getUsers(String search, String trashed, String role) {
-		
+
 		return userRepository.getAllUsers(search, trashed, role);
 	}
-	
+
 	@Override
 	public void storeUser(UserCreateDTO userDTO) {
-		
+
 		User user = mapper.map(userDTO, User.class);
 		user.setAcccountId(userBean.getUser().getAcccountId());
-		user.setPassword( new BCryptPasswordEncoder().encode(userDTO.getPassword()) );
-		userRepository.saveUser(user);
-		
+		user.setPassword(new BCryptPasswordEncoder().encode(userDTO.getPassword()));
+		userRepository.save(user);
+
 	}
-	
+
 	@Override
 	public UserDTO getUserById(Integer id) {
-		User user = userRepository.getUserById(id);
-		UserDTO userDTO = mapper.map(user, UserDTO.class);
+		
+		Optional<User> user = userRepository.findById(id);
+
+		if (!user.isPresent())
+			return null;
+
+		UserDTO userDTO = mapper.map(user.get(), UserDTO.class);
+
 		return userDTO;
 	}
-	
+
 	@Override
 	public void updateUser(Integer id, UserCreateDTO userDTO) {
-		
-		User user = userRepository.getUserById(id);
-		
+
+		User user = null;
+
+		try {
+			user = userRepository.findById(id).get();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			return;
+		}
+
 		user.setFirst_name(userDTO.getFirst_name());
 		user.setLast_name(userDTO.getLast_name());
 		user.setEmail(userDTO.getEmail());
 		user.setUpdated_at(new Date());
-		
-		if(userDTO.getPassword() != null)
-			user.setPassword( new BCryptPasswordEncoder().encode(userDTO.getPassword()) );
-		
-		userRepository.mergeUser(user);
+
+		if (!userDTO.getPassword().isEmpty())
+			user.setPassword(new BCryptPasswordEncoder().encode(userDTO.getPassword()));
+
+		userRepository.saveAndFlush(user);
 	}
-	
+
 	@Override
 	public void deleteUser(Integer id) {
-	
-		User user = userRepository.getUserById(id);
+
+		User user = null;
+		try {
+			user = userRepository.findById(id).get();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			return;
+		}
 		user.setDeleted_at(new Date());
-		userRepository.mergeUser(user);
-		
+		userRepository.saveAndFlush(user);
+
 	}
-	
+
 	@Override
 	public void restoreUser(Integer id) {
-		User user = userRepository.getUserById(id);
+
+		User user = null;
+		try {
+			user = userRepository.findById(id).get();
+		} catch (NoSuchElementException e) {
+			e.printStackTrace();
+			return;
+		}
 		user.setDeleted_at(null);
-		userRepository.mergeUser(user);
-		
+		userRepository.saveAndFlush(user);
+
 	}
 }

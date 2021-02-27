@@ -3,14 +3,13 @@ package com.app.monolightdemo.repository.impl;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import com.app.monolightdemo.dto.UserDTO;
 import com.app.monolightdemo.entity.User;
-import com.app.monolightdemo.repository.UserRepository;
+import com.app.monolightdemo.repository.UserRepositoryCustom;
 
 
 
@@ -18,42 +17,12 @@ import com.app.monolightdemo.repository.UserRepository;
 
 @Repository
 @Transactional
-public class UserRepositoryImpl  implements UserRepository{
+public class UserRepositoryImpl  implements UserRepositoryCustom{
 
 	@Autowired
 	EntityManager em;
 	
-	@Override
-	public User getUserByUserName(String userName) {
-		// TODO Auto-generated method stub
-		Query query = em.createQuery("FROM User u where u.email=:username");
-		query.setParameter("username", userName);
-		User user = null;
-		try {
-			 user = (User) query.getSingleResult();
-			
-		}catch (NoResultException e) {
-			// TODO: handle exception
-			return null;
-		}
-		return user;
-	}
-	
-	@Override
-	public User getUserById(Integer id) {
-		Query query = em.createQuery("FROM User u where u.id=:id");
-		query.setParameter("id", id);
-		User user = null;
-		try {
-			 user = (User) query.getSingleResult();
-			
-		}catch (NoResultException e) {
-			// TODO: handle exception
-			return null;
-		}
-		return user;
-	}
-	
+
 	@Override
 	public List<UserDTO> getAllUsers(String search, String trashed, String role) {
 		// TODO Auto-generated method stub
@@ -74,16 +43,5 @@ public class UserRepositoryImpl  implements UserRepository{
 		return usersDTO;
 	}
 	
-	@Override
-	public void saveUser(User user) {
-		em.persist(user);
-		em.flush();
-	}
-
-	@Override
-	public void mergeUser(User user) {
-		em.merge(user);
-		em.flush();
-	}
 	
 }

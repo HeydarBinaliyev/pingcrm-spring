@@ -1,6 +1,8 @@
 package com.app.monolightdemo.service.impl;
 
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,18 +22,15 @@ public class UserDetailsServiceImpl  implements UserDetailsService {
 
 	@Autowired 
 	UserRepository userRepository;
-	
-	
 	 
 	@Override
 	public UserDetails loadUserByUsername(String email) {
-		// TODO Auto-generated method stub
-		User user = userRepository.getUserByUserName(email);
+		Optional<User> user = userRepository.findByEmail(email);
 		
-		if(user == null )
+		if(!user.isPresent())
 			return null;
 		
-		return new UserDetailsImpl(user);
+		return new UserDetailsImpl(user.get());
 	}
 	
 

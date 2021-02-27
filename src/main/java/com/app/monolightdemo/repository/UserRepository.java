@@ -1,15 +1,13 @@
 package com.app.monolightdemo.repository;
 
-import java.util.List;
+import java.util.Optional;
 
-import com.app.monolightdemo.dto.UserDTO;
+import org.springframework.data.jpa.repository.JpaRepository;
+
 import com.app.monolightdemo.entity.User;
 
-public interface UserRepository {
+public interface UserRepository extends JpaRepository<User, Integer> , UserRepositoryCustom {
 
-	public User getUserByUserName(String userName);
-	public List<UserDTO> getAllUsers(String search, String trashed, String role);
-	public void saveUser(User user);
-	public User getUserById(Integer id);
-	public void mergeUser(User user);
+	Optional<User> findByEmail(String email);
+	
 }

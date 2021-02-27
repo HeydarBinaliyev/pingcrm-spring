@@ -36,7 +36,7 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		String email = authentication.getName();
 
 		String password = authentication.getCredentials().toString();
-		System.err.println("username: " + email);
+		
 		CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(email);
 
 		if (userDetails == null)

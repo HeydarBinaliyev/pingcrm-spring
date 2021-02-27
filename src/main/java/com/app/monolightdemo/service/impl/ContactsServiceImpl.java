@@ -74,7 +74,7 @@ public class ContactsServiceImpl implements ContactsService {
 			row.put("name", contact.getFirst_name() + " " + contact.getLast_name());
 			Optional<Organization> organization = organizationRepository.findById(contact.getOrganization_id());
 			Map<String, Object> organizationData = new HashMap<>();
-			organizationData.put("name", organization.isEmpty()?"null":organization.get().getName());
+			organizationData.put("name", organization.isPresent()?"null":organization.get().getName());
 			row.put("organization", organizationData);
 			contactList.add(row);
 		});
