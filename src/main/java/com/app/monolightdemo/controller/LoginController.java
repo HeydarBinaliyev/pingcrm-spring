@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.app.monolightdemo.inertia.Inertia;
 
 @Controller
-@RequestMapping("login")
+@RequestMapping("/login")
 public class LoginController {
 
 	@Autowired
