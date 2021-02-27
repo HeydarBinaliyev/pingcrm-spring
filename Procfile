@@ -1,1 +1,1 @@
-web java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/monolightdemo.war
+web java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/monolightdemo-0.0.1.war
