@@ -4,7 +4,7 @@ A demo application to illustrate how <a href="https://inertiajs.com" rel="nofoll
 # Installation
 
 <br>Database
-<br>For constructing database use src/main/resources/pingcrm.sql script and run it on mysql server
+<br>For constructing database use src/main/resources/pingcrm.sql script file on mysql server
 
 <br>Clone the repository
 <br> git clone https://github.com/HeydarBinaliyev/pingcrm-spring.git
