@@ -14,7 +14,7 @@ import com.app.monolightdemo.dto.UserDTO;
 
 @SpringBootApplication
 @EnableGlobalMethodSecurity(securedEnabled = true)
-public class MonolightdemoApplication /* extends ServletInitializer */ {
+public class MonolightdemoApplication extends ServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MonolightdemoApplication.class, args);
