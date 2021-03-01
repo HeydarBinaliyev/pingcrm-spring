@@ -1,6 +1,6 @@
-# PingCRM created with Spring Boot backend
+# Ping CRM created with Spring Boot backend
 A demo application to illustrate how <a href="https://inertiajs.com" rel="nofollow">Inertia.js</a> can work with Spring Boot.
-<br>This application translated from original <a href="https://github.com/inertiajs/pingcrm" rel="nofollow">PingCrm</a> Laravel and Vue JS implementation(asset versioning not included)
+<br>This application translated from original <a href="https://github.com/inertiajs/pingcrm" rel="nofollow">Ping CRM</a> Laravel and Vue JS implementation(asset versioning not included)
 # Installation
 
 <br>Database
