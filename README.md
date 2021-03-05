@@ -16,4 +16,4 @@ A demo application to illustrate how <a href="https://inertiajs.com" rel="nofoll
 <br>cd target && java -jar dependency/webapp-runner.jar monolightdemo-0.0.1.war
 
 <br>For rebuilding Vue JS
-<br> cd src/main/resources/statis && npm install && npm run watch
+<br> cd src/main/resources/static && npm install && npm run watch
