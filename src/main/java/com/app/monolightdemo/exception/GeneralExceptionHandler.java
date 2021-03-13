@@ -23,7 +23,7 @@ public class GeneralExceptionHandler {
 	@ExceptionHandler(GeneralException.class)
 	public ResponseEntity<ExceptionResponse> handleException(GeneralException exception , HttpServletRequest request,
 			HttpServletResponse response) {
-		String msg = serviceUtils.getMessage(request, exception.getCode());
+		String msg = serviceUtils.getMessage(exception.getCode());
 		exception.printStackTrace();
 		ResponseEntity<ExceptionResponse> result = new ResponseEntity<>(new ExceptionResponse(exception.getCode(),msg),HttpStatus.INTERNAL_SERVER_ERROR);
 		return result;

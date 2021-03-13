@@ -22,6 +22,7 @@ import com.app.monolightdemo.dto.ContactsDTO;
 import com.app.monolightdemo.inertia.Inertia;
 import com.app.monolightdemo.service.ContactsService;
 import com.app.monolightdemo.service.OrganizationService;
+import com.app.monolightdemo.utils.ServiceUtils;
 
 @Controller
 @RequestMapping("/contacts")
@@ -35,6 +36,9 @@ public class ContactsController {
 
 	@Autowired
 	OrganizationService organizationService;
+	
+	@Autowired
+	ServiceUtils serviceUtils;
 
 	@GetMapping
 	public Object index(@RequestParam(name = "search", defaultValue = "") String search,
@@ -83,8 +87,9 @@ public class ContactsController {
 
 		contactService.updateContact(contactDTO);
 
-		flash.put("success", "Contact updated.");
+		flash.put("success", serviceUtils.getMessage("contact.operation.update"));
 		result.put("flash", flash);
+		
 		return inertia.generateResponse(null, result);
 	}
 
@@ -110,7 +115,7 @@ public class ContactsController {
 
 		contactService.restoreContact(id);
 
-		flash.put("success", "Contact restored.");
+		flash.put("success", serviceUtils.getMessage("contact.operation.restore"));
 		result.put("flash", flash);
 
 		return inertia.generateResponse(null, result);
@@ -139,15 +144,14 @@ public class ContactsController {
 			contactService.storeContact(contactDTO);
 		} catch (Exception e) {
 			e.printStackTrace();
-			// TODO Auto-generated catch block
 			Map<String, Object> errors = new HashMap<>();
-			errors.put("name", "Contact could not created.");
+			errors.put("name", serviceUtils.getMessage("contact.operation.create.error"));
 			request.getSession().setAttribute("errors", errors);
 			response.sendRedirect("/contacts/create");
 			return;
 		}
 
-		flash.put("success", "Contact created.");
+		flash.put("success", serviceUtils.getMessage("contact.operation.create"));
 
 		request.getSession().setAttribute("flash", flash);
 
