@@ -7,9 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
@@ -21,10 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	AuthenticationFailureHandler authenticationFailureHandler;
 	@Autowired
 	AuthenticationProvider authenticationProvider;
-	@Autowired
-	AccessDeniedHandler exceptionHandling;
-	@Autowired
-	LogoutSuccessHandler logoutSuccessHandler;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -35,12 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		
 		http.formLogin().loginProcessingUrl("/login").failureHandler(authenticationFailureHandler).usernameParameter("username").passwordParameter("password");
 		
-		http.exceptionHandling().accessDeniedHandler(exceptionHandling);
-		
 		http.formLogin().defaultSuccessUrl("/", true);
 
-		http.logout().logoutSuccessHandler(logoutSuccessHandler);
-        
 		http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 	}
 

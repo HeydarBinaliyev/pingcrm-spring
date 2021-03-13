@@ -23,17 +23,15 @@ public class EntityExceptionHandler {
 	@ExceptionHandler(NonUniqueResultException.class)
 	public ResponseEntity<ExceptionResponse> handleNonUniqueException(NonUniqueResultException exception , HttpServletRequest request) {
 		exception.printStackTrace();
-		String errorCode = "error.entity.101";
-		String msg = serviceUtils.getMessage(request, errorCode);
-		return new ResponseEntity<>(new ExceptionResponse(errorCode,msg),HttpStatus.INTERNAL_SERVER_ERROR);
+		String msg = serviceUtils.getMessage(request, "error.entity.101");
+		return new ResponseEntity<>(new ExceptionResponse("error.entity.101",msg),HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}
 	@ExceptionHandler(NoResultException.class)
 	public ResponseEntity<ExceptionResponse> handleNoResultException(NoResultException exception , HttpServletRequest request) {
 		exception.printStackTrace();
-		String errorCode = "error.entity.102";
-		String msg = serviceUtils.getMessage(request, errorCode);
-		return new ResponseEntity<>(new ExceptionResponse(errorCode, msg),HttpStatus.INTERNAL_SERVER_ERROR);
+		String msg = serviceUtils.getMessage(request, "error.entity.102");
+		return new ResponseEntity<>(new ExceptionResponse( "error.entity.102", msg),HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}
 }

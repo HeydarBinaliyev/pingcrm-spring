@@ -29,12 +29,13 @@ public class ContactsController {
 
 	@Autowired
 	Inertia inertia;
+	
 	@Autowired
 	ContactsService contactService;
 
 	@Autowired
 	OrganizationService organizationService;
-	
+
 	@GetMapping
 	public Object index(@RequestParam(name = "search", defaultValue = "") String search,
 			@RequestParam(name = "trashed", defaultValue = "") String trashed,
@@ -58,85 +59,85 @@ public class ContactsController {
 
 		return inertia.generateResponse("Contacts/Index", result);
 	}
-	
+
 	@RequestMapping(path = "/{id}/edit", method = RequestMethod.GET)
 	public Object edit(@PathVariable(name = "id") Integer id) {
-		
+
 		Map<String, Object> result = new HashMap<>();
 		ContactsDTO contactsDTO = contactService.getContact(id);
 		result.put("contact", contactsDTO);
 		List<Map<String, Object>> organizations = organizationService.findAll();
-		
+
 		result.put("organizations", organizations);
-		
+
 		return inertia.generateResponse("Contacts/Edit", result);
 	}
-	
+
 	@RequestMapping(path = "/{id}", method = RequestMethod.PUT)
-	public Object update(@PathVariable(name = "id",required = true) Integer id, @RequestBody ContactsDTO contactDTO) {
-		
+	public Object update(@PathVariable(name = "id", required = true) Integer id, @RequestBody ContactsDTO contactDTO) {
+
 		Map<String, Object> result = new HashMap<>();
 		Map<String, Object> flash = new HashMap<>();
-		
+
 		contactDTO.setId(id);
-		
+
 		contactService.updateContact(contactDTO);
-		
+
 		flash.put("success", "Contact updated.");
 		result.put("flash", flash);
 		return inertia.generateResponse(null, result);
 	}
-	@RequestMapping(path = "/{id}",  method = RequestMethod.DELETE)
-	public Object delete(@PathVariable(name = "id",  required = true) Integer id) {
+
+	@RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+	public Object delete(@PathVariable(name = "id", required = true) Integer id) {
 
 		Map<String, Object> result = new HashMap<>();
 		Map<String, Object> flash = new HashMap<>();
-		
+
 		contactService.deleteContact(id);
-		
+
 		flash.put("success", "Contact deleted.");
 		result.put("flash", flash);
-		
+
 		return inertia.generateResponse(null, result);
 	}
-	
-	@RequestMapping(path = "/restore/{id}",  method = RequestMethod.PUT)
-	public Object restore(@PathVariable(name = "id",  required = true) Integer id) {
+
+	@RequestMapping(path = "/restore/{id}", method = RequestMethod.PUT)
+	public Object restore(@PathVariable(name = "id", required = true) Integer id) {
 
 		Map<String, Object> result = new HashMap<>();
 		Map<String, Object> flash = new HashMap<>();
-		
+
 		contactService.restoreContact(id);
-		
+
 		flash.put("success", "Contact restored.");
 		result.put("flash", flash);
-		
+
 		return inertia.generateResponse(null, result);
 	}
-	
+
 	@RequestMapping(path = "/create", method = RequestMethod.GET)
 	public Object create() {
-		
+
 		Map<String, Object> result = new HashMap<>();
-		
+
 		List<Map<String, Object>> organizations = organizationService.findAll();
-		
+
 		result.put("organizations", organizations);
-		
+
 		return inertia.generateResponse("Contacts/Create", result);
-		
+
 	}
-	
+
 	@RequestMapping(path = "/store", method = RequestMethod.POST)
-	public void store(@RequestBody ContactsDTO contactDTO, HttpServletRequest request,
-			HttpServletResponse response) throws IOException, ServletException  {
-		
+	public void store(@RequestBody ContactsDTO contactDTO, HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException {
+
 		Map<String, Object> flash = new HashMap<>();
-		
+
 		try {
 			contactService.storeContact(contactDTO);
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			// TODO Auto-generated catch block
 			Map<String, Object> errors = new HashMap<>();
@@ -145,12 +146,12 @@ public class ContactsController {
 			response.sendRedirect("/contacts/create");
 			return;
 		}
-		
+
 		flash.put("success", "Contact created.");
-		
+
 		request.getSession().setAttribute("flash", flash);
-		
+
 		response.sendRedirect("/contacts");
-		
+
 	}
 }
