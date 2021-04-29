@@ -6,19 +6,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ExceptionResponse {
 
-    @JsonProperty("message")
-    private String message;
-    @JsonProperty("errorCode")
-    private String errorCode;
-    @JsonProperty("timestamp")
-    private Date timestamp;
+	@JsonProperty("message")
+	private String message;
+	@JsonProperty("errorCode")
+	private String errorCode;
+	@JsonProperty("timestamp")
+	private Date timestamp;
 
-    public ExceptionResponse(String errorCode,String message) {
-        this.errorCode = errorCode;
-        this.message = message;
-        this.timestamp = new Date();
-    }
-    public ExceptionResponse() {}
+	public ExceptionResponse(String errorCode, String message) {
+		this.errorCode = errorCode;
+		this.message = message;
+		this.timestamp = new Date();
+	}
+
+	public ExceptionResponse() {
+	}
 
 	public String getMessage() {
 		return message;
@@ -31,9 +33,5 @@ public class ExceptionResponse {
 	public Date getTimestamp() {
 		return timestamp;
 	}
-	
-	
-
-    
 
 }

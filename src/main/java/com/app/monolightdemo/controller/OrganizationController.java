@@ -57,8 +57,6 @@ public class OrganizationController {
 		filters.put("trashed", trashed);
 		result.put("filters", filters);
 
-		System.err.println(request.getRequestURL() + " " + request.getRequestURI() + " " + request.getQueryString());
-
 		return inertia.generateResponse("Organizations/Index", result);
 	}
 

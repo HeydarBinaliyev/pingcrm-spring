@@ -49,14 +49,11 @@ public class AuthenticationFailureHandlerImpl implements AuthenticationFailureHa
 		erros.put("email", errorResponse.getMessage());
 		props.put("errors", erros);
 		
-		System.err.println("onAuthenticationFailure: " + request.getRequestURL());
 		response.setContentType("application/json");
 		OutputStream out = response.getOutputStream();
 		
 		@SuppressWarnings("unchecked")
 		ResponseEntity<String> inertiaResponse = (ResponseEntity<String>) inertia.generateResponse("Auth/Login", props);
-
-		System.err.println(inertiaResponse.getBody());
 
 		out.write(inertiaResponse.getBody().getBytes());
 		out.flush();

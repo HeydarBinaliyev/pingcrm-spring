@@ -10,7 +10,7 @@ import com.app.monolightdemo.dto.LinkDTO;
 @Component
 public class PagingUtil {
 
-	public List<LinkDTO> createpagingList(String url, Integer page, Integer totalPages) {
+	public List<LinkDTO> createPagingList(String url, Integer page, Integer totalPages) {
 
 		List<LinkDTO> links = new ArrayList<>();
 

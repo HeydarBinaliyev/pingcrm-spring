@@ -79,7 +79,7 @@ public class ContactsServiceImpl implements ContactsService {
 			contactList.add(row);
 		});
 		
-		List<LinkDTO> links = paggingUtil.createpagingList(url, page, contacts.getTotalPages());
+		List<LinkDTO> links = paggingUtil.createPagingList(url, page, contacts.getTotalPages());
 		
 		result.put("links", links);
 		result.put("data", contactList);

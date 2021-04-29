@@ -44,7 +44,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 		
 		result.put("data", organizations.getContent());
 		
-		List<LinkDTO> links = pagingUtil.createpagingList(url, page, organizations.getTotalPages());
+		List<LinkDTO> links = pagingUtil.createPagingList(url, page, organizations.getTotalPages());
 		
 		result.put("links", links);
 		
