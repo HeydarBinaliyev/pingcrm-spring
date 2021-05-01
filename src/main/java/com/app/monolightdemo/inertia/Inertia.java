@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.stereotype.Component;
@@ -65,8 +67,11 @@ public class Inertia {
 
 					if (this.isRequestPartialLoad(component))
 						props = this.createPartialData(props);
-
-					return new ResponseEntity<String>(this.generateInertiaData(component, props), HttpStatus.OK);
+					
+					final HttpHeaders headers = new HttpHeaders();
+					headers.setContentType(MediaType.APPLICATION_JSON);
+					
+					return new ResponseEntity<String>(this.generateInertiaData(component, props), headers, HttpStatus.OK);
 				}
 			} else {
 
@@ -87,9 +92,7 @@ public class Inertia {
 
 		response.addHeader("X-Inertia", "true");
 
-		response.addHeader("Vary", "Accept");
-
-		response.addHeader("Content-Type", "application/json");
+		response.addHeader(HttpHeaders.VARY, "Accept");
 
 	}
 
