@@ -9,7 +9,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import com.app.monolightdemo.exception.CustomLoginException;
+
+import com.app.monolightdemo.exception.WrongPasswordException;
+import com.app.monolightdemo.exception.WrongUsernameException;
 import com.app.monolightdemo.utils.ServiceUtils;
 
 @Component
@@ -34,12 +36,12 @@ public class AuthenticationProviderImpl implements AuthenticationProvider {
 		CustomUserDetails userDetails = (CustomUserDetails) userDetailsService.loadUserByUsername(email);
 
 		if (userDetails == null)
-			throw new CustomLoginException("error.login.102");
+			throw new WrongUsernameException("error.login.102");
 
 		boolean passwordMatches = new BCryptPasswordEncoder().matches(password, userDetails.getPassword());
 
 		if (!passwordMatches)
-			throw new CustomLoginException("error.login.103");
+			throw new WrongPasswordException("error.login.103");
 
 		serviceUtils.populateUserBean(userDetails.getUser());
 

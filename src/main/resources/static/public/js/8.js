@@ -228,7 +228,11 @@ var render = function() {
                   _vm._v(" "),
                   _c("text-input", {
                     staticClass: "mt-6",
-                    attrs: { label: "Password", type: "password" },
+                    attrs: {
+                      error: _vm.errors.password,
+                      label: "Password",
+                      type: "password"
+                    },
                     model: {
                       value: _vm.form.password,
                       callback: function($$v) {
